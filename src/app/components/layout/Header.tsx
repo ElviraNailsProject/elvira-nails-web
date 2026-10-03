@@ -8,22 +8,6 @@ import { siteHeaderConfig } from "@/config/site";
 
 const SCROLL_THRESHOLD = 8;
 
-function getBrandDescriptor(pathname: string): string {
-  if (pathname === "/") {
-    return siteHeaderConfig.brand.descriptors.home;
-  }
-
-  if (pathname.startsWith("/services")) {
-    return siteHeaderConfig.brand.descriptors.services;
-  }
-
-  if (pathname.startsWith("/training")) {
-    return siteHeaderConfig.brand.descriptors.training;
-  }
-
-  return siteHeaderConfig.brand.descriptors.home;
-}
-
 export default function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,8 +26,6 @@ export default function Header() {
     };
   }, []);
 
-  const descriptor = getBrandDescriptor(pathname);
-
   return (
     <header
       className={[
@@ -55,26 +37,18 @@ export default function Header() {
           : "bg-transparent",
       ].join(" ")}
     >
-      <div className="mx-auto flex min-h-24 max-w-360 items-center px-8">
-        <div className="flex min-w-0 flex-1 items-center gap-4">
+      <div className="flex min-h-24 w-full items-center px-8">
+        {/* Brand */}
+        <div className="flex flex-1 items-center">
           <Link
             href="/"
             className="shrink-0 font-serif text-[30px] leading-none tracking-[0.02em] text-[#4A3A32]"
           >
             {siteHeaderConfig.brand.name}
           </Link>
-
-          {descriptor && (
-            <>
-              <span aria-hidden="true" className="h-5 w-px bg-[#A99B92]/60" />
-
-              <span className="truncate font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-[#A99B92]">
-                {descriptor}
-              </span>
-            </>
-          )}
         </div>
 
+        {/* Navigation */}
         <nav
           aria-label="Main navigation"
           className="flex items-center justify-center"
@@ -106,18 +80,19 @@ export default function Header() {
           </ul>
         </nav>
 
+        {/* CTA */}
         <div className="flex flex-1 justify-end">
           <Link
             href={siteHeaderConfig.primaryCta.href}
             className={[
               "inline-flex items-center justify-center",
-              "rounded-md border border-[#4A3A32]",
+              "rounded-md",
+              "bg-[#574840] text-[#FCF8F3]",
               "px-5 py-3",
               "font-sans text-[12px] font-semibold uppercase",
               "tracking-widest",
-              "text-[#4A3A32]",
               "transition-colors duration-200",
-              "hover:bg-[#4A3A32] hover:text-[#FCF8F3]",
+              "hover:bg-[#3F332D]",
             ].join(" ")}
           >
             {siteHeaderConfig.primaryCta.label}
