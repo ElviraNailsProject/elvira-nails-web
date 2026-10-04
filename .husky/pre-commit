@@ -1,0 +1,13 @@
+echo '🏗️  Styling, testing and building your project before committing'
+
+npx lint-staged || {
+  echo '🤢  Prettier/ESLint failed. Fix the issues above and try again.'
+  false
+}
+
+npm run types || {
+  echo '🤡  TypeScript check failed. Fix the errors above and try again.'
+  false
+}
+
+echo '✅  Everything passed. Committing now...'
