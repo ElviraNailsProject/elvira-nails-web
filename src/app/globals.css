@@ -12,6 +12,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1250px;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

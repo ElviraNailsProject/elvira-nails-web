@@ -1,6 +1,12 @@
 export const siteHeaderConfig = {
   brand: {
-    name: "Elvira",
+    logo: {
+      src: "/logo.svg",
+      alt: "Elvira",
+      width: 2170,
+      height: 725,
+      href: "/",
+    },
 
     descriptors: {
       home: "NAIL STUDIO & EDUCATION - LEIDERDORP",
