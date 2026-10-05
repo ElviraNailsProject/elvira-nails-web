@@ -44,6 +44,7 @@ enum Locale {
   NL
   EN
   RU
+  UK
 }
 
 enum StudentContactType {
