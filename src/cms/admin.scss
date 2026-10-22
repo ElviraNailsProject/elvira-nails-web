@@ -1,0 +1,502 @@
+@font-face {
+  font-family: "Elvira Noto Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/admin/fonts/noto-serif-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Elvira Noto Serif";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/admin/fonts/noto-serif-500.ttf") format("truetype");
+}
+
+// This stylesheet is imported only by Payload's root layout. Its explicit root
+// class keeps the public site independent from CMS theme and layout overrides.
+html.elvira-cms {
+  --font-body: "Elvira Noto Serif", Georgia, serif;
+  --theme-bg: #f7f4ef;
+  --theme-bg-color: #f7f4ef;
+  --theme-input-bg: #fcfaf7;
+  --theme-text: #59483d;
+  --theme-elevation-0: #fffdfa;
+  --theme-elevation-50: #faf7f3;
+  --theme-elevation-100: #f0e9e1;
+  --theme-elevation-150: #e7ddd3;
+  --theme-elevation-200: #ddd0c4;
+  --theme-elevation-250: #d0bbae;
+  --theme-elevation-300: #b69e8c;
+  --theme-elevation-400: #8b7667;
+  --theme-elevation-500: #7c6555;
+  --theme-elevation-600: #6e5647;
+  --theme-elevation-700: #59483d;
+  --theme-elevation-800: #49382d;
+  --theme-elevation-900: #382a22;
+  --theme-elevation-1000: #251b16;
+  --gutter-h: 40px;
+  --nav-width: 0px;
+  --app-header-height: 56px;
+  --style-radius-s: 5px;
+  --style-radius-m: 8px;
+  --accessibility-outline: 2px solid #865b43;
+  --accessibility-outline-offset: 3px;
+
+  color-scheme: light;
+
+  body {
+    background: var(--theme-bg);
+    color: var(--theme-text);
+  }
+
+  // Replacing Nav through Payload's public component slot leaves its layout
+  // grid in place. A single column removes that reserved sidebar space.
+  .template-default,
+  .template-default--nav-open,
+  .template-default--nav-hydrated {
+    display: block;
+    grid-template-columns: minmax(0, 1fr);
+    min-height: calc(100dvh - 76px);
+  }
+
+  .template-default__nav-toggler-wrapper,
+  .app-header__mobile-nav-toggler,
+  .app-header__account {
+    display: none;
+  }
+
+  .template-default__wrap {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .template-default__wrap::before {
+    display: none;
+  }
+
+  .app-header {
+    z-index: 20;
+  }
+
+  .app-header__localizer.localizer,
+  .app-header--nav-open .app-header__localizer {
+    display: flex;
+    right: var(--gutter-h);
+    left: auto;
+  }
+
+  .app-header__step-nav {
+    font-size: 12px;
+  }
+
+  .step-nav__home .elvira-cms-brand {
+    width: 48px;
+  }
+
+  .collection-list__header h1,
+  .document-header__title,
+  .dashboard h1 {
+    color: #715442;
+    font-family: var(--font-body);
+    font-size: clamp(28px, 3.1vw, 44px);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 1.25;
+  }
+
+  .collection-list__header {
+    margin-bottom: 24px;
+  }
+
+  .collection-list .table {
+    border: 1px solid #e7e1da;
+    border-radius: 6px;
+    background: #fcfaf7;
+  }
+
+  .table table {
+    border-collapse: collapse;
+  }
+
+  .table thead {
+    color: #7b6859;
+  }
+
+  .table th,
+  .table td {
+    padding-block: 15px;
+    border-bottom: 1px solid #eee7df;
+    vertical-align: middle;
+  }
+
+  .table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .table tbody tr:nth-child(odd) {
+    background: transparent;
+  }
+
+  .table tbody tr:hover {
+    background: #f5eee7;
+  }
+
+  .btn--style-primary {
+    --bg-color: #765844;
+    --color: #fffdfa;
+    --hover-bg: #5f4433;
+    --hover-color: #fffdfa;
+    --btn-border: 1px solid #765844;
+    --hover-btn-border: 1px solid #5f4433;
+    border-radius: 5px;
+  }
+
+  .field-type input,
+  .field-type textarea {
+    box-shadow: none;
+  }
+
+  .field-label {
+    color: #6f5948;
+  }
+
+  .field-description {
+    color: #806f61;
+    line-height: 1.65;
+  }
+
+  .elvira-cms-brand {
+    display: block;
+    width: 142px;
+    height: auto;
+  }
+
+  .elvira-cms-header {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    min-height: 76px;
+    padding: 0 var(--gutter-h);
+    border-bottom: 1px solid #e7e1da;
+    background: #faf7f2;
+  }
+
+  .elvira-cms-header__brand {
+    flex-shrink: 0;
+  }
+
+  .elvira-cms-header__nav {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: clamp(16px, 2.4vw, 35px);
+    min-width: 0;
+    align-self: stretch;
+  }
+
+  .elvira-cms-header__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 76px;
+    border-bottom: 3px solid transparent;
+    padding-top: 3px;
+    color: #806e60;
+    font-size: 13px;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      color 150ms ease,
+      border-color 150ms ease;
+  }
+
+  .elvira-cms-header__link img {
+    flex-shrink: 0;
+  }
+
+  .elvira-cms-header__link:hover,
+  .elvira-cms-header__link[aria-current="page"] {
+    color: #76543e;
+    border-bottom-color: #a98a79;
+  }
+
+  .elvira-cms-header__controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 0;
+  }
+
+  .elvira-cms-header__website {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 44px;
+    color: #7c6555;
+    font-size: 11px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .elvira-cms-header__website:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .elvira-cms-account {
+    position: relative;
+    padding-left: 18px;
+    border-left: 1px solid #d6c9bd;
+  }
+
+  .elvira-cms-account__trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .elvira-cms-account__trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .elvira-cms-account__avatar {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #e0d2c5;
+    border-radius: 50%;
+    background: #ede1d5;
+    color: #73533d;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
+
+  .elvira-cms-account__identity {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    max-width: 160px;
+    color: #766352;
+    line-height: 1.5;
+  }
+
+  .elvira-cms-account__name {
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .elvira-cms-account__role {
+    font-size: 10px;
+  }
+
+  .elvira-cms-account__chevron {
+    flex-shrink: 0;
+  }
+
+  .elvira-cms-account[open] .elvira-cms-account__chevron {
+    transform: rotate(180deg);
+  }
+
+  .elvira-cms-account__menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 190px;
+    padding: 6px;
+    border: 1px solid #e4d9cf;
+    border-radius: 6px;
+    background: #fffdfa;
+    box-shadow: 0 10px 35px #59483d14;
+  }
+
+  .elvira-cms-account__menu a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 14px;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+  .elvira-cms-account__menu a:hover {
+    background: #f3eae1;
+  }
+
+  .elvira-cms-header a:focus-visible,
+  .elvira-cms-account__trigger:focus-visible {
+    outline: var(--accessibility-outline);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .elvira-cms-status,
+  .table .elvira-cms-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 25px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    line-height: 1.45;
+    white-space: nowrap;
+  }
+
+  .elvira-cms-status--studying {
+    background: #f7e2d1;
+    color: #865227;
+  }
+
+  .elvira-cms-status--waiting {
+    background: #f8edcf;
+    color: #756221;
+  }
+
+  .elvira-cms-status--completed {
+    background: #e4ecd9;
+    color: #52663d;
+  }
+
+  .template-minimal {
+    min-height: 100dvh;
+    padding: 32px 20px;
+    background: radial-gradient(ellipse at top, #fffdfa, #f0e8df);
+  }
+
+  .template-minimal__wrap {
+    padding: clamp(24px, 4vw, 44px);
+    border: 1px solid #e4d9cf;
+    border-radius: 9px;
+    background: #fcfaf7;
+    box-shadow: 0 18px 70px #6e56470d;
+  }
+
+  .login__brand {
+    margin-bottom: 36px;
+  }
+
+  .login__brand .elvira-cms-brand {
+    width: 190px;
+  }
+
+  @media (max-width: 1200px) {
+    --gutter-h: 28px;
+
+    .elvira-cms-header {
+      gap: 22px;
+    }
+
+    .elvira-cms-account__identity {
+      max-width: 110px;
+    }
+
+    .elvira-cms-header__website {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    --gutter-h: 24px;
+
+    .elvira-cms-header {
+      flex-wrap: wrap;
+      gap: 0 16px;
+      padding-top: 12px;
+    }
+
+    .elvira-cms-header__brand {
+      margin-bottom: 10px;
+    }
+
+    .elvira-cms-header__controls {
+      margin-left: auto;
+      margin-bottom: 10px;
+    }
+
+    .elvira-cms-header__nav {
+      order: 3;
+      justify-content: flex-start;
+      gap: 24px;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .elvira-cms-header__link {
+      min-height: 50px;
+    }
+
+    .elvira-cms-header__website {
+      display: inline-flex;
+    }
+
+    .elvira-cms-account__identity {
+      max-width: 180px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    --gutter-h: 18px;
+
+    .elvira-cms-brand {
+      width: 116px;
+    }
+
+    .elvira-cms-header__nav {
+      gap: 21px;
+    }
+
+    .elvira-cms-header__link {
+      gap: 7px;
+      font-size: 12px;
+    }
+
+    .elvira-cms-header__website,
+    .elvira-cms-account__role {
+      display: none;
+    }
+
+    .elvira-cms-account {
+      padding-left: 12px;
+    }
+
+    .elvira-cms-account__identity {
+      max-width: 85px;
+    }
+
+    .elvira-cms-account__avatar {
+      width: 32px;
+      height: 32px;
+      font-size: 10px;
+    }
+
+    .app-header__step-nav {
+      overflow-x: auto;
+      font-size: 11px;
+    }
+
+    .step-nav__home .elvira-cms-brand {
+      width: 38px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .elvira-cms-header__link {
+      transition: none;
+    }
+  }
+}

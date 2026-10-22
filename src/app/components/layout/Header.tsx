@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { siteHeaderConfig } from "@/config/site";
 
@@ -18,11 +18,12 @@ function getBrandDescriptor(pathname: string): string {
   return siteHeaderConfig.brand.descriptors.home;
 }
 
-export default function Header() {
+export default function Header({ adminLink }: { adminLink?: ReactNode }) {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [prevPathname, setPrevPathname] = useState(pathname);
+  const menuTrigger = useRef<HTMLButtonElement | null>(null);
 
   // Закрываем меню при смене маршрута (adjust state during render)
   if (pathname !== prevPathname) {
@@ -40,7 +41,10 @@ export default function Header() {
   useEffect(() => {
     if (!isMenuOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsMenuOpen(false);
+      if (e.key === "Escape") {
+        setIsMenuOpen(false);
+        menuTrigger.current?.focus();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -119,6 +123,7 @@ export default function Header() {
 
         {/* CTA + burger (правый блок) */}
         <div className="flex flex-1 items-center justify-end gap-4">
+          {adminLink}
           <Link
             href={siteHeaderConfig.primaryCta.href}
             className={[
@@ -134,7 +139,10 @@ export default function Header() {
 
           <button
             type="button"
-            onClick={() => setIsMenuOpen((v) => !v)}
+            onClick={(event) => {
+              menuTrigger.current = event.currentTarget;
+              setIsMenuOpen((v) => !v);
+            }}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
@@ -188,7 +196,10 @@ export default function Header() {
 
         <button
           type="button"
-          onClick={() => setIsMenuOpen((v) => !v)}
+          onClick={(event) => {
+            menuTrigger.current = event.currentTarget;
+            setIsMenuOpen((v) => !v);
+          }}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-nav"
@@ -223,6 +234,7 @@ export default function Header() {
       {/* Выпадающее меню — без изменений */}
       <div
         id="mobile-nav"
+        inert={!isMenuOpen}
         className={[
           "desktop:hidden overflow-hidden",
           "transition-[max-height,opacity] duration-300 ease-out",
@@ -259,6 +271,10 @@ export default function Header() {
               );
             })}
           </ul>
+
+          {adminLink ? (
+            <div className="mt-4 tablet:hidden">{adminLink}</div>
+          ) : null}
 
           <Link
             href={siteHeaderConfig.primaryCta.href}
