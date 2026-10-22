@@ -4,5 +4,7 @@ out
 build
 coverage
 src/generated
+src/cms/payload-types.ts
+.local
 *.min.js
 package-lock.json

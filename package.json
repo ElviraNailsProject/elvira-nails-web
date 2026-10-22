@@ -3,8 +3,9 @@
   "name": "elvira-nails-web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20.18.1"
   },
   "scripts": {
     "dev": "next dev",
@@ -15,7 +16,17 @@
     "format:check": "prettier --check .",
     "types": "tsc --noEmit",
     "prepare": "husky",
-    "db:seed": "tsx scripts/seed.ts"
+    "db:seed": "tsx scripts/seed.ts",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "cms": "node scripts/payload.mjs",
+    "cms:types": "node scripts/payload.mjs generate:types",
+    "cms:importmap": "node scripts/payload.mjs generate:importmap",
+    "cms:migrate": "node scripts/payload.mjs migrate",
+    "cms:admin": "tsx scripts/cms-admin.ts",
+    "test": "tsx --test tests/*.test.ts src/features/student-cases/public/*.test.ts",
+    "test:integration": "node scripts/test-cms.mjs",
+    "check": "npm run test && npm run types && npm run lint && npm run build"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs}": [
@@ -27,12 +38,22 @@
     ]
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "3.91.0",
+    "@payloadcms/email-nodemailer": "3.91.0",
+    "@payloadcms/next": "3.91.0",
+    "@payloadcms/storage-s3": "3.91.0",
+    "@payloadcms/translations": "3.91.0",
+    "@payloadcms/ui": "3.91.0",
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",
+    "drizzle-orm": "0.45.2",
+    "graphql": "16.11.0",
     "next": "16.3.6",
+    "payload": "3.91.0",
     "pg": "^8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "sharp": "^0.35.5",
     "zod": "^4.6.5"
   },
   "devDependencies": {

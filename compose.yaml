@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - "127.0.0.1:54322:5432"
+    environment:
+      POSTGRES_USER: elvira_dev
+      POSTGRES_PASSWORD: local_dev_only
+      POSTGRES_DB: elvira_dev
+    volumes:
+      - elvira-dev-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U elvira_dev -d elvira_dev"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  cms-postgres:
+    image: postgres:17-alpine
+    ports:
+      - "127.0.0.1:54323:5432"
+    environment:
+      POSTGRES_USER: elvira_cms_dev
+      POSTGRES_PASSWORD: local_cms_dev_only
+      POSTGRES_DB: elvira_cms_dev
+    volumes:
+      - elvira-cms-dev-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U elvira_cms_dev -d elvira_cms_dev"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  elvira-dev-postgres:
+  elvira-cms-dev-postgres:
