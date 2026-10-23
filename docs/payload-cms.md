@@ -10,7 +10,7 @@ CMS работает внутри Next.js по `/admin`, REST API — по `/api
 | `DIRECT_URL`       | Prisma         | Миграции существующего приложения                          |
 | `CMS_DATABASE_URL` | Payload        | Отдельная база кейсов, медиа, администраторов и заявок CMS |
 
-Не указывайте существующую Prisma-базу в `CMS_DATABASE_URL`. Конфигурация отклоняет очевидное совпадение адреса, порта и имени БД; разные aliases/pooler-адреса одной базы могут обойти такую проверку, поэтому отдельная база должна быть создана фактически. `push: false` отключает автоматическое изменение схемы при запуске, `disableCreateDatabase: true` требует создать БД заранее.
+Не указывайте существующую Prisma-базу в `CMS_DATABASE_URL`. Для обычного PostgreSQL конфигурация сравнивает адрес, порт и имя БД. Для официальных адресов Supabase она учитывает project reference: общий региональный pooler может обслуживать разные проекты, а direct/session/transaction подключения одного проекта должны распознаваться как одна база. Произвольные aliases проверить автоматически невозможно, поэтому отдельная база должна быть создана фактически. `push: false` отключает автоматическое изменение схемы при запуске, `disableCreateDatabase: true` требует создать БД заранее.
 
 В [compose.yaml](../compose.yaml) два независимых сервиса PostgreSQL 17:
 
@@ -39,6 +39,20 @@ node -e "console.log(require('node:crypto').randomBytes(48).toString('hex'))"
 Не используйте значение из примера в качестве секрета. `APP_ORIGIN` должен совпадать с адресом в браузере, включая схему и порт: `localhost` и `127.0.0.1` — разные origins. Для запуска на 3100 задайте соответствующий origin и используйте `npm run dev -- --port 3100`.
 
 Next.js и команды `cms:*` читают `.env.local` и `.env`. Prisma CLI в текущей конфигурации загружает `.env` и переменные процесса; он не подхватывает `.env.local` через обёртку CMS.
+
+### Supabase и Vercel
+
+Для текущей архитектуры используйте отдельный Supabase-проект CMS. Существующий проект приложения и его Prisma-миграции остаются независимыми. Supabase Data API в проекте CMS отключите через Integrations → Data API до создания таблиц: доступ к черновикам, администраторам и контактам должен проходить через Payload. Его правила доступа не распространяются на прямой Supabase REST API.
+
+В Connect возьмите Session pooler для миграций с IPv4 и Transaction pooler для Vercel. Для отдельного PostgreSQL-логина имя пользователя в shared pooler имеет вид `payload_cms.<project-ref>`. Создавайте таблицы этим логином; заранее отзовите его default privileges для `PUBLIC`, `anon`, `authenticated`, `service_role`. После миграции проверьте фактические права и включите RLS без публичных политик на таблицах CMS. Владелец таблиц продолжит работать через Payload. Такой логин сохраняет права изменения схемы CMS; это не отдельная роль только для чтения/записи.
+
+Для проверяемого TLS скачайте сертификат в Database Settings → SSL configuration → Download certificate. В `CMS_DATABASE_SSL_CA` вставьте содержимое PEM целиком, с настоящими переносами строк или буквальными `\n`. В этом режиме удалите `ssl`, `sslmode`, `sslrootcert`, `sslcert`, `sslkey`, `sslnegotiation` из query-параметров `CMS_DATABASE_URL`: иначе драйвер может заменить явно заданную проверку сертификата. Конфигурация включает `rejectUnauthorized: true`; отключать проверку сертификатов не требуется. Для локальной базы без TLS оставьте переменную пустой.
+
+Во всех трёх URL базы задавайте пользователя, хост, порт и имя базы в основной части URL. Query-параметры `user`, `host`, `port`, `database` запрещены, чтобы настройки драйвера не расходились с проверкой отдельной базы.
+
+Vercel должен получать `CMS_DATABASE_URL`, `CMS_DATABASE_SSL_CA`, постоянный `PAYLOAD_SECRET`, точный HTTPS `APP_ORIGIN` и настройки S3 в нужном окружении. Production и Preview настраиваются отдельно; preview не должен изменять рабочие данные. После изменения переменных нужен новый deployment. Ошибка `Set CMS_DATABASE_URL and PAYLOAD_SECRET (at least 32 characters)` означает отсутствие одной из обязательных настроек или слишком короткий секрет, а не ошибку TypeScript.
+
+Источники: [подключения Supabase](https://supabase.com/docs/guides/database/connecting-to-postgres), [доступ к Data API](https://supabase.com/docs/guides/api/securing-your-api), [сертификаты PostgreSQL](https://supabase.com/docs/guides/platform/ssl-enforcement), [переменные Vercel](https://vercel.com/docs/environment-variables).
 
 ## Первый запуск и владелец
 

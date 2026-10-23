@@ -57,7 +57,7 @@ export default buildConfig({
   },
   collections: [Admins, StudentCases, TrainingApplications, Media],
   db: postgresAdapter({
-    pool: { connectionString: env.databaseURL },
+    pool: { connectionString: env.databaseURL, ssl: env.databaseSSL },
     idType: "uuid",
     push: false,
     disableCreateDatabase: true,
