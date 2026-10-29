@@ -14,7 +14,8 @@ src/cms/access/                        доступ владельца и пуб
 src/cms/hooks/                         обработка файлов, защита используемых фотографий
 src/cms/lib/content-rules.ts           статусы, контакты, правила галереи
 src/cms/components/                    расширения штатного интерфейса CMS
-src/cms/admin.scss                     общая тема и верхний хедер
+src/cms/styles/                        тема и оформление штатных экранов CMS
+src/cms/components/admin-header/        верхняя навигация и её стили
 src/cms/migrations/                    миграции отдельной базы CMS
 src/server/student-cases/              чтение CMS и публичное представление данных
 src/features/student-cases/contracts.ts публичные DTO и проверка параметров

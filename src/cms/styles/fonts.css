@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Great Vibes";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/admin/fonts/great-vibes-400.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Elvira Noto Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/admin/fonts/noto-serif-400.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Elvira Noto Serif";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/admin/fonts/noto-serif-500.ttf") format("truetype");
+}

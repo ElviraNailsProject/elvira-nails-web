@@ -1,0 +1,44 @@
+.courseCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.courseCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 98px;
+  text-align: left;
+  background: #fcfaf7;
+  border: 1px solid #e7dcd2;
+  border-radius: 10px;
+  padding: 16px;
+  color: #3b2b24;
+}
+
+.courseCard strong {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.courseCard small {
+  font-size: 11px;
+  color: #7a6458;
+}
+
+.courseCard > span {
+  font-size: 13px;
+  color: #8a5a48;
+}
+
+.courseCard[aria-pressed="true"] {
+  border-color: #8a5a48;
+  background: #fff;
+}
+
+.courseCard:hover {
+  border-color: #b8978a;
+}

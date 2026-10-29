@@ -1,0 +1,53 @@
+.email {
+  padding: 18px;
+  border: 1px solid #ede3da;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 12px;
+  line-height: 18.6px;
+  overflow-wrap: anywhere;
+}
+
+.emailLogo {
+  font-family: "Great Vibes", cursive;
+  font-size: 26px;
+  line-height: 26px;
+  color: #9b6e5c;
+  margin-bottom: 10px;
+}
+
+.email p {
+  margin: 0 0 10px;
+}
+
+.email .appointment {
+  color: #5e4639;
+}
+
+.emailAddress {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #f8f1eb;
+}
+
+.emailAddress > img {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.emailAddress p {
+  margin: 0;
+}
+
+.emailAddress p + p {
+  color: #7a6458;
+  white-space: pre-line;
+}
+
+.emailAddress a {
+  color: #8a5a48;
+  text-decoration: underline;
+}

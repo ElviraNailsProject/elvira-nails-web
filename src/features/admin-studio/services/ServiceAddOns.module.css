@@ -1,0 +1,42 @@
+.addOnSection {
+  padding-top: 16px;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sectionTitle h3 {
+  font-size: 13px;
+}
+
+.sectionTitle small {
+  font-size: 10px;
+}
+
+.addOnLabels,
+.addOnRow {
+  display: grid;
+  grid-template-columns: minmax(70px, 1fr) 64px 64px 32px;
+  gap: 8px;
+  align-items: center;
+}
+
+.addOnLabels {
+  color: #7a6458;
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+.addOnRow {
+  margin-bottom: 10px;
+}
+
+.addOnRow input {
+  padding: 8px 10px !important;
+  font-size: 12px !important;
+}

@@ -1,0 +1,164 @@
+.gallery {
+  min-width: 0;
+}
+
+.instructions {
+  font-size: 11px;
+  line-height: 16px;
+  color: #7a6458;
+  margin: 0 0 32px;
+  padding-left: 5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tile,
+.uploadTile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font: inherit;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.tile:hover {
+  border-color: #b8978a;
+}
+
+.tile:focus-visible,
+.uploadTile:focus-visible {
+  outline: 2px solid #8a5a48;
+  outline-offset: 3px;
+}
+
+.selected {
+  border-color: #8a5a48;
+}
+
+.dragging {
+  opacity: 0.45;
+}
+
+.tile {
+  cursor: grab;
+}
+
+.tile:active {
+  cursor: grabbing;
+}
+
+.uploadTile {
+  background: #f8f1eb;
+  border: 1px dashed #cdb7a8;
+  flex-direction: column;
+  gap: 10px;
+  color: #8a5a48;
+  font-size: 12px;
+}
+
+.uploadTile:hover {
+  background: #f1e7df;
+}
+
+.uploadTile small {
+  font-size: 10px;
+  color: #7a6458;
+}
+
+.uploadTile:disabled {
+  cursor: progress;
+  opacity: 0.65;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.categoryBadge,
+.homeBadge {
+  position: absolute;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 11px;
+  font-size: 10px;
+  line-height: 14px;
+  max-width: calc(100% - 18px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.categoryBadge {
+  bottom: 9px;
+  left: 9px;
+  color: #5e4639;
+  background: rgba(252, 250, 247, 0.92);
+}
+
+.homeBadge {
+  top: 9px;
+  right: 9px;
+  color: #fff;
+  background: #8a5a48;
+}
+
+.count {
+  margin: 14px 0 0;
+  font-size: 11px;
+  line-height: 16px;
+  color: #7a6458;
+}
+
+.error {
+  margin: -15px 0 18px;
+  padding: 10px 12px;
+  border: 1px solid #dfbdb3;
+  background: #fff3ed;
+  border-radius: 6px;
+  color: #813e2e;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.fileInput,
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fileInput {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .uploadTile {
+    transition: none;
+  }
+}

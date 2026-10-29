@@ -1,0 +1,163 @@
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 26.61%);
+  align-items: start;
+  gap: 24px;
+  color: #3b2b24;
+}
+
+.mainColumn {
+  min-width: 0;
+}
+
+.iconButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e7dcd2;
+  border-radius: 50%;
+  background: #fff;
+  padding: 0;
+  color: #8a5a48;
+}
+.iconButton:hover {
+  background: #f5ebe3;
+}
+
+.panel {
+  background: #fcfaf7;
+  border: 1px solid #e7dcd2;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  min-height: 61px;
+  border-bottom: 1px solid #ede3da;
+}
+.panelHeader h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #4a342b;
+}
+
+.panelBody {
+  padding: 20px 22px;
+}
+
+.compactButton {
+  min-height: 34px !important;
+  padding: 7px 12px !important;
+  font-size: 12px !important;
+  align-self: start;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #efe7e0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #7a6458;
+  font-size: 12px;
+  min-width: 0;
+}
+.field input,
+.field select,
+.field textarea {
+  color: #3b2b24;
+  font-size: 13px;
+}
+.field textarea {
+  min-height: 80px;
+}
+
+.fieldPair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.dashedButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  border: 1px dashed #cdb7a8;
+  border-radius: 7px;
+  background: transparent;
+  color: #8a5a48;
+  font-size: 12px;
+  padding: 10px 16px;
+}
+.dashedButton:hover {
+  background: #f6ece4;
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.formActions button {
+  flex: 1;
+  min-width: 0;
+  padding-inline: 10px;
+}
+
+.cancelLink,
+.textButton {
+  border: 0;
+  background: transparent;
+  color: #8a5a48;
+  padding: 0;
+  font-size: 12px;
+  text-align: left;
+}
+.cancelLink:hover,
+.textButton:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cancelLink {
+  display: block;
+  margin: 14px auto 0;
+}
+
+.feedback {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 5px;
+  background: #f4e6dd;
+  color: #814d3a;
+  font-size: 12px;
+}
+
+.empty {
+  padding: 30px 20px;
+  color: #7a6458;
+}
+
+.emptyPanel {
+  padding: 24px;
+}
+.emptyPanel p {
+  margin-top: 12px;
+  color: #7a6458;
+}
