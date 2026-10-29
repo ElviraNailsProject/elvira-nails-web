@@ -1,0 +1,30 @@
+html.elvira-cms {
+  scrollbar-gutter: stable;
+  --font-body: "Elvira Noto Serif", Georgia, serif;
+  --theme-bg: #f7f4ef;
+  --theme-bg-color: #f7f4ef;
+  --theme-input-bg: #fcfaf7;
+  --theme-text: #59483d;
+  --theme-elevation-0: #fffdfa;
+  --theme-elevation-50: #faf7f3;
+  --theme-elevation-100: #f0e9e1;
+  --theme-elevation-150: #e7ddd3;
+  --theme-elevation-200: #ddd0c4;
+  --theme-elevation-250: #d0bbae;
+  --theme-elevation-300: #b69e8c;
+  --theme-elevation-400: #8b7667;
+  --theme-elevation-500: #7c6555;
+  --theme-elevation-600: #6e5647;
+  --theme-elevation-700: #59483d;
+  --theme-elevation-800: #49382d;
+  --theme-elevation-900: #382a22;
+  --theme-elevation-1000: #251b16;
+  --gutter-h: 40px;
+  --nav-width: 0px;
+  --app-header-height: 56px;
+  --style-radius-s: 5px;
+  --style-radius-m: 8px;
+  --accessibility-outline: 2px solid #865b43;
+  --accessibility-outline-offset: 3px;
+  color-scheme: light;
+}

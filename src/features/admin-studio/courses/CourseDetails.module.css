@@ -1,0 +1,78 @@
+.courseCoverSection {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #efe7e0;
+}
+
+.courseCoverSection h3 {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.courseCover {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 150px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #e9d9cc;
+  color: #7a6458;
+  font-size: 11px;
+}
+
+.courseCover img {
+  object-fit: cover;
+}
+
+.inclusions {
+  border: 0;
+  border-bottom: 1px solid #efe7e0;
+  margin: 0;
+  padding: 16px 0;
+  min-width: 0;
+}
+
+.inclusions legend {
+  padding: 16px 0 10px;
+  float: left;
+  width: 100%;
+  font-size: 13px;
+}
+
+.inclusions label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 22px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  clear: both;
+}
+
+.inclusions label:last-child {
+  margin-bottom: 0;
+}
+
+.inclusions input {
+  margin: 0 0 0 4px;
+}
+
+.enrollment {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding-top: 16px;
+}
+
+.enrollment h3 {
+  font-size: 13px;
+}
+
+.enrollment small {
+  display: block;
+  font-size: 10px;
+  color: #7a6458;
+  margin-top: 2px;
+}

@@ -1,13 +1,13 @@
 import { Locale as PrismaLocale } from "@/generated/prisma/client";
 
-export const supportedLocales = {
+const supportedLocales = {
   nl: PrismaLocale.NL,
   en: PrismaLocale.EN,
   ru: PrismaLocale.RU,
   uk: PrismaLocale.UK,
 } as const;
 
-export type SupportedLocale = keyof typeof supportedLocales;
+type SupportedLocale = keyof typeof supportedLocales;
 
 export function parseLocale(value: string | null): PrismaLocale {
   const locale = value?.toLowerCase() ?? "en";

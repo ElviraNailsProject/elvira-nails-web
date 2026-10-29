@@ -1,0 +1,135 @@
+.photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details {
+  background: #fcfaf7;
+  border: 1px solid #e7dcd2;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.details h2 {
+  margin: 0;
+  padding: 20px 22px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #4a342b;
+  border-bottom: 1px solid #ede3da;
+}
+
+.detailsBody {
+  padding: 20px 22px;
+}
+
+.imageSection {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #efe7e0;
+}
+
+.preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #7a6458;
+  font-size: 11px;
+}
+
+.fileDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.fileDetails > div {
+  min-width: 0;
+}
+
+.fileDetails p {
+  margin: 0 0 3px;
+  font-size: 12px;
+  line-height: 16px;
+  overflow-wrap: anywhere;
+}
+
+.fileDetails small {
+  display: block;
+  font-size: 10px;
+  line-height: 14px;
+  color: #7a6458;
+}
+
+.fileDetails > button {
+  flex-shrink: 0;
+  min-height: 34px;
+  height: 34px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.metadata {
+  display: grid;
+  gap: 16px;
+  padding: 18px 0 22px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #efe7e0;
+}
+
+.orderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.orderButtons {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+}
+
+.homeToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.orderButtons button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #d9c8bb;
+  border-radius: 6px;
+  background: #fff;
+  color: #8a5a48;
+  cursor: pointer;
+}
+
+.orderButtons button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.empty {
+  padding: 22px;
+  color: #7a6458;
+  font-size: 13px;
+  line-height: 20px;
+}

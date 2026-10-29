@@ -1,0 +1,8 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #8b7365;
+  font-size: 12px;
+  margin-bottom: 14px;
+}

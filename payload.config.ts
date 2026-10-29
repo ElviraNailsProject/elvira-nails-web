@@ -39,9 +39,29 @@ export default buildConfig({
       ),
     },
     components: {
-      Nav: "/src/cms/components/AdminNav#EmptyNav",
-      header: ["/src/cms/components/AdminNav#AdminNav"],
+      Nav: "/src/cms/components/admin-header/AdminHeader#EmptyNav",
+      header: ["/src/cms/components/admin-header/AdminHeader#AdminHeader"],
       graphics: { Logo: "/src/cms/components/Brand#BrandLogo" },
+      views: {
+        studioPromotions: {
+          Component: "/src/cms/views/StudioViews#PromotionsView",
+          path: "/studio/promotions",
+          exact: true,
+          meta: { title: "Акции" },
+        },
+        studioContent: {
+          Component: "/src/cms/views/StudioViews#ContentView",
+          path: "/studio/content",
+          exact: true,
+          meta: { title: "Контент сайта" },
+        },
+        studioSettings: {
+          Component: "/src/cms/views/StudioViews#SettingsView",
+          path: "/studio/settings",
+          exact: true,
+          meta: { title: "Настройки студии" },
+        },
+      },
     },
   },
   i18n: { fallbackLanguage: "ru", supportedLanguages: { en, nl, ru, uk } },

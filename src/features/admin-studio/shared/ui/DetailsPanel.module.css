@@ -1,0 +1,29 @@
+.panel {
+  border: 1px solid #e6d7ca;
+  border-radius: 9px;
+  background: #fcfaf8;
+  overflow: hidden;
+}
+
+.panelHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px;
+  border-bottom: 1px solid #eee5dd;
+}
+
+.panelBody {
+  padding: 20px 22px;
+}
+
+.close {
+  border: 0;
+  background: transparent;
+  color: #977c6b;
+  font-size: 23px !important;
+  width: 32px;
+  height: 32px;
+  line-height: 1;
+}

@@ -1,0 +1,150 @@
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.filters button {
+  border: 1px solid #dfcbbd;
+  border-radius: 20px;
+  background: #fcfaf7;
+  color: #5e4639;
+  padding: 8px 14px;
+  min-height: 34px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.filters button:hover {
+  background: #f0e3d8;
+}
+
+.filters button.activeFilter {
+  background: #8a5a48;
+  border-color: #8a5a48;
+  color: #fff;
+}
+
+.serviceTable {
+  border: 1px solid #e7dcd2;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fcfaf7;
+}
+
+.serviceTable table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 13px;
+}
+
+.serviceTable th {
+  text-align: left;
+  color: #7a6458;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 12px 20px;
+}
+
+.serviceTable td {
+  padding: 12px 20px;
+  border-top: 1px solid #efe7e0;
+  height: 89px;
+  vertical-align: middle;
+}
+
+.serviceTable .selectedRow {
+  background: #f3e9e0;
+}
+
+.serviceTable .selectedRow:first-child td {
+  height: 99px;
+}
+
+.serviceTable .duration {
+  font-size: 12px;
+  text-align: left;
+  padding-left: 38px;
+}
+
+.serviceTable .right {
+  text-align: right;
+}
+
+.photoColumn {
+  width: 14.4%;
+}
+
+.nameColumn {
+  width: 25%;
+}
+
+.durationColumn {
+  width: 21%;
+}
+
+.priceColumn {
+  width: 14%;
+}
+
+.visibleColumn {
+  width: 13%;
+}
+
+.actionColumn {
+  width: 12.6%;
+}
+
+.servicePhoto {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 0;
+  border-radius: 8px;
+  padding: 0;
+}
+
+.servicePhoto img[src^="data:"] {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+}
+
+.serviceName {
+  display: block;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 0;
+  color: #3b2b24;
+  line-height: 1.35;
+}
+
+.serviceName:hover {
+  color: #8a5a48;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.category {
+  display: block;
+  color: #7a6458;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.rowActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.tableFooter {
+  padding: 16px 20px;
+  border-top: 1px solid #efe7e0;
+  font-size: 11px;
+  color: #7a6458;
+}

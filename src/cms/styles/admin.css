@@ -1,0 +1,5 @@
+/* Loaded once by the Payload layout, after the native CMS styles. */
+@import "./fonts.css";
+@import "./theme.css";
+@import "./payload-overrides.css";
+@import "../components/admin-header/AdminHeader.css";

@@ -1,0 +1,368 @@
+html.elvira-cms .elvira-studio-brand,
+html.elvira-cms .elvira-studio-notifications,
+html.elvira-cms .elvira-cms-header__nav.elvira-cms-header__nav--desktop {
+  display: none;
+}
+html.elvira-cms .elvira-cms-brand {
+  display: block;
+  width: 142px;
+  height: auto;
+}
+html.elvira-cms .elvira-cms-header {
+  position: relative;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 76px;
+  padding: 0 var(--gutter-h);
+  border-bottom: 1px solid #e7e1da;
+  background: #faf7f2;
+}
+html.elvira-cms .elvira-cms-header__brand {
+  flex-shrink: 0;
+}
+html.elvira-cms .elvira-cms-header__nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(16px, 2.4vw, 35px);
+  min-width: 0;
+  align-self: stretch;
+}
+html.elvira-cms .elvira-cms-header__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 76px;
+  border-bottom: 3px solid transparent;
+  padding-top: 3px;
+  color: #806e60;
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease;
+}
+html.elvira-cms .elvira-cms-header__link img {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+html.elvira-cms .elvira-cms-header__link:hover,
+html.elvira-cms .elvira-cms-header__link[aria-current="page"] {
+  color: #76543e;
+  border-bottom-color: #a98a79;
+}
+html.elvira-cms .elvira-cms-header__controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+html.elvira-cms .elvira-cms-header__website {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 44px;
+  color: #7c6555;
+  font-size: 11px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+html.elvira-cms .elvira-cms-header__website:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+html.elvira-cms .elvira-cms-account {
+  position: relative;
+  padding-left: 18px;
+  border-left: 1px solid #d6c9bd;
+}
+html.elvira-cms .elvira-cms-account__trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+}
+html.elvira-cms .elvira-cms-account__trigger::-webkit-details-marker {
+  display: none;
+}
+html.elvira-cms .elvira-cms-account__avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #e0d2c5;
+  border-radius: 50%;
+  background: #ede1d5;
+  color: #73533d;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+html.elvira-cms .elvira-cms-account__identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 160px;
+  color: #766352;
+  line-height: 1.5;
+}
+html.elvira-cms .elvira-cms-account__name {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+html.elvira-cms .elvira-cms-account__role {
+  font-size: 10px;
+}
+html.elvira-cms .elvira-cms-account__chevron {
+  flex-shrink: 0;
+}
+html.elvira-cms .elvira-cms-account[open] .elvira-cms-account__chevron {
+  transform: rotate(180deg);
+}
+html.elvira-cms .elvira-cms-account__menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 190px;
+  padding: 6px;
+  border: 1px solid #e4d9cf;
+  border-radius: 6px;
+  background: #fffdfa;
+  box-shadow: 0 10px 35px rgba(89, 72, 61, 0.0784313725);
+}
+html.elvira-cms .elvira-cms-account__menu a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+html.elvira-cms .elvira-cms-account__menu a:hover {
+  background: #f3eae1;
+}
+html.elvira-cms .elvira-cms-header a:focus-visible,
+html.elvira-cms .elvira-cms-account__trigger:focus-visible {
+  outline: var(--accessibility-outline);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+@media (max-width: 1200px) {
+  html.elvira-cms .elvira-cms-header {
+    gap: 22px;
+  }
+  html.elvira-cms .elvira-cms-account__identity {
+    max-width: 110px;
+  }
+  html.elvira-cms .elvira-cms-header__website {
+    display: none;
+  }
+}
+@media (max-width: 1000px) {
+  html.elvira-cms .elvira-cms-header {
+    flex-wrap: wrap;
+    gap: 0 16px;
+    padding-top: 12px;
+  }
+  html.elvira-cms .elvira-cms-header__brand {
+    margin-bottom: 10px;
+  }
+  html.elvira-cms .elvira-cms-header__controls {
+    margin-left: auto;
+    margin-bottom: 10px;
+  }
+  html.elvira-cms .elvira-cms-header__nav {
+    order: 3;
+    justify-content: flex-start;
+    gap: 24px;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  html.elvira-cms .elvira-cms-header__link {
+    min-height: 50px;
+  }
+  html.elvira-cms .elvira-cms-header__website {
+    display: inline-flex;
+  }
+  html.elvira-cms .elvira-cms-account__identity {
+    max-width: 180px;
+  }
+}
+@media (max-width: 560px) {
+  html.elvira-cms .elvira-cms-brand {
+    width: 116px;
+  }
+  html.elvira-cms .elvira-cms-header__nav {
+    gap: 21px;
+  }
+  html.elvira-cms .elvira-cms-header__link {
+    gap: 7px;
+    font-size: 12px;
+  }
+  html.elvira-cms .elvira-cms-header__website,
+  html.elvira-cms .elvira-cms-account__role {
+    display: none;
+  }
+  html.elvira-cms .elvira-cms-account {
+    padding-left: 12px;
+  }
+  html.elvira-cms .elvira-cms-account__identity {
+    max-width: 85px;
+  }
+  html.elvira-cms .elvira-cms-account__avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.elvira-cms .elvira-cms-header__link {
+    transition: none;
+  }
+}
+@media (min-width: 1250px) {
+  html.elvira-cms .elvira-cms-header {
+    min-height: 74px;
+    gap: 24px;
+    background: #f7f2ee;
+    border-bottom-color: #e9e0d8;
+  }
+  html.elvira-cms .elvira-cms-brand-legacy,
+  html.elvira-cms .elvira-cms-header__nav--legacy,
+  html.elvira-cms .elvira-cms-header__website {
+    display: none;
+  }
+  html.elvira-cms .elvira-studio-brand {
+    display: block;
+    position: relative;
+    width: 149px;
+    height: 73px;
+    color: #9b6e5c;
+  }
+  html.elvira-cms .elvira-studio-brand__name {
+    position: absolute;
+    left: 14px;
+    top: 5px;
+    font:
+      50px/47.5px "Great Vibes",
+      cursive;
+  }
+  html.elvira-cms .elvira-studio-brand > img {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+  }
+  html.elvira-cms .elvira-studio-brand__descriptor {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+    font-size: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    line-height: 7px;
+  }
+  html.elvira-cms .elvira-studio-brand__descriptor::before,
+  html.elvira-cms .elvira-studio-brand__descriptor::after {
+    position: absolute;
+    top: 3px;
+    width: 16px;
+    height: 1px;
+    background: #b8978a;
+    content: "";
+  }
+  html.elvira-cms .elvira-studio-brand__descriptor::before {
+    left: 0;
+  }
+  html.elvira-cms .elvira-studio-brand__descriptor::after {
+    right: 0;
+  }
+  html.elvira-cms .elvira-cms-header__nav.elvira-cms-header__nav--desktop {
+    display: flex;
+    gap: clamp(22px, 2.5vw, 36px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  html.elvira-cms .elvira-cms-header__link {
+    font-size: 15px;
+    min-height: 74px;
+    padding: 0;
+    border-bottom-width: 2px;
+    gap: 10px;
+    color: #6b574c;
+  }
+  html.elvira-cms .elvira-cms-header__link:last-child {
+    font-size: 13px;
+  }
+  html.elvira-cms .elvira-cms-header__link[aria-current="page"] {
+    color: #9b6e5c;
+    border-color: #9b6e5c;
+  }
+  html.elvira-cms .elvira-cms-header__controls {
+    gap: 22px;
+  }
+  html.elvira-cms .elvira-studio-notifications {
+    display: block;
+    position: relative;
+  }
+  html.elvira-cms .elvira-studio-notifications summary {
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    list-style: none;
+    border-radius: 50%;
+  }
+  html.elvira-cms .elvira-studio-notifications summary::-webkit-details-marker {
+    display: none;
+  }
+  html.elvira-cms .elvira-studio-notifications summary:hover {
+    background: #eee2d9;
+  }
+  html.elvira-cms .elvira-studio-notifications > div {
+    position: absolute;
+    right: 0;
+    top: 56px;
+    width: 270px;
+    padding: 20px;
+    border: 1px solid #e6d7ca;
+    border-radius: 6px;
+    background: #fffdfa;
+    box-shadow: 0 8px 24px rgba(78, 53, 41, 0.0941176471);
+    font-size: 13px;
+  }
+  html.elvira-cms .elvira-studio-notifications p {
+    color: #8b7365;
+    margin: 10px 0 0;
+  }
+  html.elvira-cms .elvira-cms-account {
+    padding-left: 22px;
+  }
+  html.elvira-cms .elvira-cms-account__identity {
+    min-width: 82px;
+    max-width: 120px;
+  }
+  html.elvira-cms .elvira-cms-account__avatar {
+    color: #6e4536;
+    background: #e3cfc2;
+    border: 0;
+  }
+  html.elvira-cms .elvira-cms-account__name {
+    font-size: 13px;
+  }
+}

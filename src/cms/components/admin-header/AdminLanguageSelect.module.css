@@ -1,0 +1,17 @@
+.field {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid #e4d9cf;
+  font-size: 12px;
+}
+
+.field select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d6c9bd;
+  border-radius: 4px;
+  background: #fffdfa;
+  color: inherit;
+  font: inherit;
+}

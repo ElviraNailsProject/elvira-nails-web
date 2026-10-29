@@ -1,0 +1,168 @@
+.program {
+  padding: 20px;
+  border: 1px solid #e7dcd2;
+  border-radius: 10px;
+  background: #fcfaf7;
+}
+
+.programHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.programHeader h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.programHeader small {
+  white-space: nowrap;
+  font-size: 11px;
+  color: #7a6458;
+}
+
+.modules {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.module {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+  min-height: 153px;
+  padding: 16px 16px 18px 44px;
+  border: 1px solid #ede3da;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.dragging {
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.dragHandle {
+  position: absolute;
+  top: 22px;
+  left: 15px;
+  width: 14px;
+  height: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  grid-template-rows: repeat(3, max-content);
+  align-content: center;
+  justify-content: center;
+  gap: 1.75px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: grab !important;
+}
+
+.dragHandle:active {
+  cursor: grabbing !important;
+}
+
+.moduleNumber {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #6e4536;
+  background: #f1e7df;
+  font-size: 12px;
+}
+
+.moduleContent {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0;
+  padding-right: 100px;
+}
+
+.moduleContent h3 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 7px;
+}
+
+.topics {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  margin: 0 0 12px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #5e4639;
+}
+
+.topics li {
+  position: relative;
+  padding-left: 13px;
+}
+
+.topics li::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #b8978a;
+}
+
+.moduleActions {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.moduleActions > span {
+  padding-top: 2px;
+  margin-right: 8px;
+  color: #7a6458;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.moduleEditHeading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 80px;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.topicInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.topicInputs > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.editorTools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-block: 12px;
+}

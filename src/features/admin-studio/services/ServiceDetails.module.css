@@ -1,0 +1,64 @@
+.servicePanelHeader {
+  min-height: 68px;
+}
+
+.closeButton {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  width: 24px;
+  height: 24px;
+}
+
+.photoSection {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #efe7e0;
+}
+
+.photoSection h3 {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.photoUpload {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.photoPreview {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #e9d9cc;
+  font-size: 10px;
+  color: #7a6458;
+}
+
+.photoPreview img {
+  object-fit: cover;
+  width: 96px;
+  height: 96px;
+}
+
+.uploadDetails {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.uploadDetails small {
+  font-size: 10px;
+}
+
+.fileName {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
