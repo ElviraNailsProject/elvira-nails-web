@@ -81,7 +81,13 @@ export default function Header() {
       <div className="hidden w-full items-center px-8 pb-4 tablet:flex">
         {/* Descriptor — на месте бывшего brand.name */}
         <div className="flex min-w-0 flex-1 items-center">
-          <span className="truncate font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-[#A99B92]">
+          <span
+            className={[
+              "truncate font-sans text-[11px] font-medium uppercase tracking-[0.14em]",
+              "transition-colors duration-200",
+              hasSolidBackground ? "text-[#4A3A32]" : "text-[#DCC8AE]",
+            ].join(" ")}
+          >
             {descriptor}
           </span>
         </div>
@@ -106,7 +112,8 @@ export default function Header() {
                     className={[
                       "font-sans text-[12px] font-medium uppercase",
                       "tracking-[0.12em] transition-colors duration-200",
-                      "text-[#4A3A32] hover:text-[#C9A5A0]",
+                      hasSolidBackground ? "text-[#4A3A32]" : "text-[#DCC8AE]",
+                      "hover:text-[#C9A5A0]",
                     ].join(" ")}
                   >
                     {item.label}
@@ -122,11 +129,12 @@ export default function Header() {
           <Link
             href={siteHeaderConfig.primaryCta.href}
             className={[
-              "hidden desktop:inline-flex items-center justify-center rounded-md",
+              "inline-flex items-center justify-center rounded-md",
               "bg-[#574840] text-[#FCF8F3]",
               "px-5 py-3",
               "font-sans text-[12px] font-semibold uppercase tracking-widest",
-              "transition-colors duration-200 hover:bg-[#3F332D]",
+              "transition-colors duration-200",
+              "hover:bg-[#3F332D]",
             ].join(" ")}
           >
             {siteHeaderConfig.primaryCta.label}
@@ -138,7 +146,12 @@ export default function Header() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
-            className="desktop:hidden -mr-2 inline-flex h-10 w-10 items-center justify-center text-[#4A3A32]"
+            className={[
+              "desktop:hidden",
+              "inline-flex h-10 w-10 items-center justify-center",
+              "-mr-2",
+              hasSolidBackground ? "text-[#4A3A32]" : "text-[#DCC8AE]",
+            ].join(" ")}
           >
             <span className="relative block h-4 w-6">
               <span
