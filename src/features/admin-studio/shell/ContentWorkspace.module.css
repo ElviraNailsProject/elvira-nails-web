@@ -1,0 +1,28 @@
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  column-gap: 24px;
+}
+.toolbar > nav {
+  grid-column: 1 / -1;
+}
+.add {
+  margin-bottom: 20px;
+}
+@media (max-width: 1249px) {
+  .heading > div > p:first-child {
+    display: none;
+  }
+}
+@media (max-width: 639px) {
+  .toolbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .add {
+    grid-row: 3;
+    margin-bottom: 16px;
+    min-height: 48px;
+    border-radius: 8px;
+  }
+}

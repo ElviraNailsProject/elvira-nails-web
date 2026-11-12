@@ -50,3 +50,49 @@
   font-weight: 500;
   color: #4a342b;
 }
+
+@media (max-width: 1249px) {
+  .card {
+    border-radius: 12px;
+  }
+
+  .cardHeader {
+    min-height: 0;
+    padding: 18px 18px 0;
+    border-bottom: 0;
+  }
+
+  .cardIcon {
+    display: none;
+  }
+
+  .cardHeader h2 {
+    margin-bottom: 3px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .cardHeader p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .compact {
+    padding: 18px;
+  }
+
+  .compactHeader h2 {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 639px) {
+  .cardHeader {
+    padding: 16px 16px 0;
+  }
+
+  .compact {
+    padding: 16px;
+  }
+}

@@ -233,6 +233,6 @@ export const galleryCategoryKeys: Record<string, keyof typeof galleryMessages> =
   };
 
 export type GalleryNotice = {
-  key: keyof typeof galleryMessages;
+  key: keyof typeof galleryMessages | "draftFailed";
   params?: Record<string, string | number>;
 };

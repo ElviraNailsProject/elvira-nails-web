@@ -42,3 +42,26 @@
 .courseCard:hover {
   border-color: #b8978a;
 }
+
+@media (max-width: 1249px) {
+  .courseCard {
+    min-height: 112px;
+  }
+  .courseCard strong {
+    font-size: 15px;
+  }
+}
+@media (max-width: 639px) {
+  .courseCards {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 0 0 8px;
+    scroll-snap-type: x proximity;
+  }
+  .courseCard {
+    flex: 0 0 200px;
+    scroll-snap-align: start;
+    padding: 14px;
+  }
+}

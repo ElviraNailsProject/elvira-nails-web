@@ -2,6 +2,10 @@
   min-width: 0;
 }
 
+.cards {
+  display: none;
+}
+
 .heading {
   position: relative;
   min-height: 109px;
@@ -349,5 +353,120 @@
   .tableFooter {
     font-size: 10px;
     padding-inline: 12px;
+  }
+}
+
+@media (max-width: 1249px) {
+  .heading {
+    min-height: 0;
+    padding-bottom: 20px;
+  }
+  .eyebrow {
+    display: none;
+  }
+  .heading h1 {
+    font-size: 32px;
+    margin: 0 0 6px;
+  }
+  .heading > button {
+    top: auto;
+    bottom: 20px;
+    min-height: 48px;
+  }
+  .subtitle {
+    max-width: min(430px, calc(100% - 195px));
+  }
+  .filters {
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .filters button {
+    flex: 0 0 auto;
+    min-height: 44px;
+    white-space: nowrap;
+    padding-inline: 12px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .cardEmpty {
+    grid-column: 1 / -1;
+    padding: 40px 16px;
+    text-align: center;
+    color: #7a6458;
+  }
+  .tableCard {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    overflow: visible;
+  }
+  .table {
+    display: none;
+  }
+  .tableFooter {
+    padding: 20px 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .heading {
+    padding-bottom: 16px;
+  }
+  .heading h1 {
+    font-size: 28px;
+  }
+  .subtitle {
+    max-width: none;
+    line-height: 1.45;
+  }
+  .heading > button {
+    position: static;
+    width: 100%;
+    justify-content: center;
+    margin-top: 16px;
+    font-size: 15px;
+  }
+  .filters {
+    gap: 8px;
+    padding: 0 0 12px;
+    margin-bottom: 16px;
+    background: transparent;
+    border-radius: 0;
+  }
+  .filters button {
+    min-height: 40px;
+    padding-inline: 14px;
+    border: 1px solid #e1d4c9;
+    border-radius: 22px;
+    background: #fcfaf7;
+    font-size: 13px;
+  }
+  .filters button[aria-pressed="true"] {
+    background: #8a5a48;
+    border-color: #8a5a48;
+    color: white;
+    box-shadow: none;
+  }
+  .filters button[aria-pressed="true"] span {
+    color: white;
+    background: #ffffff38;
+  }
+  .filters span {
+    min-width: 20px;
+    height: 20px;
+  }
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .tableFooter {
+    gap: 12px;
+    font-size: 11px;
   }
 }

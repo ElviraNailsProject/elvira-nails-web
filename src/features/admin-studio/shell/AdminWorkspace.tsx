@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import {
   useEffect,
   useState,
@@ -59,11 +58,6 @@ export function AdminWorkspace({
           </div>
         ) : null}
       </main>
-      <div className={s.smallScreen}>
-        <h1>{t("desktopTitle")}</h1>
-        <p>{t("desktopHint")}</p>
-        <Link href="/admin/collections/student-cases">{t("openCases")}</Link>
-      </div>
     </DraftOwner.Provider>
   );
 }

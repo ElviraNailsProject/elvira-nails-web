@@ -2,13 +2,8 @@
 
 import { useStudioTranslation } from "../shared/i18n/useStudioTranslation";
 import { courseMessages } from "./courses.messages";
-import {
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ChangeEvent,
-  type FormEvent,
-} from "react";
+import { useLayoutEffect, useRef, useState, type ChangeEvent } from "react";
+import { ResponsiveDetails } from "../shared/ui/ResponsiveDetails";
 import { ConfirmDialog } from "../shared/ui/ConfirmDialog";
 import { useLocalDraft } from "../shared/drafts/useLocalDraft";
 import { demoCourses } from "./courses.demo";
@@ -28,12 +23,15 @@ export function CoursesEditor({ addSignal = 0 }: { addSignal?: number }) {
   const [selectedId, setSelectedId] = useState<string | null>(
     courses[0]?.id ?? null,
   );
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [draft, setDraft] = useState<Course | null>(null);
   const [lastAddSignal, setLastAddSignal] = useState(addSignal);
   const [editingModule, setEditingModule] = useState<string | null>(null);
   const [draggedModule, setDraggedModule] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<CourseDeletion | null>(null);
-  const [message, setMessage] = useState<keyof typeof courseMessages | "">("");
+  const [message, setMessage] = useState<
+    keyof typeof courseMessages | "draftFailed" | ""
+  >("");
   const [uploading, setUploading] = useState(false);
   const coverRequest = useRef(0);
   useLayoutEffect(
@@ -48,6 +46,7 @@ export function CoursesEditor({ addSignal = 0 }: { addSignal?: number }) {
 
   if (lastAddSignal !== addSignal) {
     setLastAddSignal(addSignal);
+    setDetailsOpen(true);
     const course = createCourseDraft();
     setSelectedId(course.id);
     setDraft(course);
@@ -103,9 +102,20 @@ export function CoursesEditor({ addSignal = 0 }: { addSignal?: number }) {
     update({ modules });
   }
 
-  function saveCourse(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  function saveCourse() {
     if (!current || uploading) return;
+    if (
+      !Number.isInteger(current.price * 2) ||
+      current.price < 0 ||
+      current.price > 10000 ||
+      !Number.isInteger(current.days) ||
+      current.days < 1 ||
+      current.days > 365
+    ) {
+      setDetailsOpen(true);
+      setMessage("invalidCourseSettings");
+      return;
+    }
     if (
       !current.title.trim() ||
       current.modules.some(
@@ -138,10 +148,29 @@ export function CoursesEditor({ addSignal = 0 }: { addSignal?: number }) {
       setCourses(next);
       setDraft(null);
       setEditingModule(null);
+      setMessage("");
+      setDetailsOpen(false);
+    } else {
+      setMessage("draftFailed");
     }
   }
 
+  function closeDetails() {
+    cancelCover();
+    setDetailsOpen(false);
+    setMessage("");
+    const stored = courses.find((course) => course.id === selectedId);
+    if (!stored) setSelectedId(courses[0]?.id ?? null);
+    // Program edits happen outside the compact details form.
+    setDraft(
+      stored && draft && draft.modules !== stored.modules
+        ? { ...stored, modules: draft.modules }
+        : null,
+    );
+  }
+
   function cancelChanges() {
+    if (isNew) setDetailsOpen(false);
     cancelCover();
     setDraft(null);
     setEditingModule(null);
@@ -167,6 +196,7 @@ export function CoursesEditor({ addSignal = 0 }: { addSignal?: number }) {
       setDraft(null);
       setDeleting(null);
       setEditingModule(null);
+      setDetailsOpen(false);
     } else {
       setMessage("deleteFailed");
     }
@@ -225,6 +255,10 @@ export function CoursesEditor({ addSignal = 0 }: { addSignal?: number }) {
         {current ? (
           <CourseProgram
             current={current}
+            onOpenDetails={() => setDetailsOpen(true)}
+            hasChanges={draft !== null}
+            onSave={saveCourse}
+            message={message ? t(message) : ""}
             editingModule={editingModule}
             draggedModule={draggedModule}
             setEditingModule={setEditingModule}
@@ -239,18 +273,27 @@ export function CoursesEditor({ addSignal = 0 }: { addSignal?: number }) {
         )}
       </section>
       {current ? (
-        <CourseDetails
-          current={current}
-          isNew={isNew}
-          hasChanges={draft !== null}
-          uploading={uploading}
-          message={message ? t(message) : ""}
-          update={update}
-          onSave={saveCourse}
-          onCoverChange={changeCover}
-          onCancel={cancelChanges}
-          onDelete={(id) => setDeleting({ kind: "course", id })}
-        />
+        <ResponsiveDetails
+          open={detailsOpen}
+          onClose={closeDetails}
+          label={isNew ? t("newCourse") : t("details")}
+        >
+          <CourseDetails
+            current={current}
+            isNew={isNew}
+            hasChanges={draft !== null}
+            uploading={uploading}
+            message={message ? t(message) : ""}
+            update={update}
+            onSave={(event) => {
+              event.preventDefault();
+              saveCourse();
+            }}
+            onCoverChange={changeCover}
+            onCancel={cancelChanges}
+            onDelete={(id) => setDeleting({ kind: "course", id })}
+          />
+        </ResponsiveDetails>
       ) : (
         <aside className={`${formStyles.panel} ${formStyles.emptyPanel}`}>
           <h2>{t("details")}</h2>

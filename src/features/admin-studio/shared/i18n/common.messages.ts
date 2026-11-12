@@ -1,6 +1,7 @@
 import type { StudioMessages } from "./studio-translations";
 
 export const commonMessages = {
+  back: { ru: "Назад", uk: "Назад", en: "Back", nl: "Terug" },
   save: { ru: "Сохранить", uk: "Зберегти", en: "Save", nl: "Opslaan" },
   cancel: { ru: "Отмена", uk: "Скасувати", en: "Cancel", nl: "Annuleren" },
   close: { ru: "Закрыть", uk: "Закрити", en: "Close", nl: "Sluiten" },

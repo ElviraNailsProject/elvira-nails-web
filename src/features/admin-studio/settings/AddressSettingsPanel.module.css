@@ -35,3 +35,33 @@
   min-height: 80px;
   resize: vertical;
 }
+
+@media (max-width: 1249px) {
+  .addressFields {
+    padding: 14px 18px 18px;
+    gap: 14px;
+  }
+
+  .addressNotice {
+    padding: 12px;
+    background: #f1e6dd;
+  }
+
+  .addressNotice p {
+    line-height: 1.4;
+  }
+
+  .cityFields {
+    grid-template-columns: minmax(0, 110px) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .addressFields {
+    padding: 14px 16px 16px;
+  }
+
+  .cityFields {
+    grid-template-columns: minmax(0, 120px) minmax(0, 1fr);
+  }
+}

@@ -1,6 +1,7 @@
 /* Uploaded banner previews are local data URLs. */
 /* eslint-disable @next/next/no-img-element */
 import { Button, Icon, Toggle } from "../shared/ui/controls";
+import { PromotionCard } from "./PromotionCard";
 import type { Promotion, PromotionFilter } from "./promotions.types";
 import {
   formatDate,
@@ -85,6 +86,23 @@ export function PromotionsList({
             </span>
           </button>
         ))}
+      </div>
+
+      <div className={styles.cards}>
+        {visiblePromotions.map((promotion) => (
+          <PromotionCard
+            key={promotion.id}
+            promotion={promotion}
+            today={today}
+            disabled={uploading}
+            onEdit={() => edit(promotion)}
+            onDelete={() => setDeleting(promotion)}
+            onToggle={(checked) => togglePromotion(promotion, checked)}
+          />
+        ))}
+        {visiblePromotions.length === 0 && (
+          <p className={styles.cardEmpty}>{t("empty")}</p>
+        )}
       </div>
 
       <div className={styles.tableCard}>

@@ -13,24 +13,6 @@ export const shellMessages = {
     en: "New editor preview · Sample content. Saving creates a draft in this browser only; website publishing is not connected yet.",
     nl: "Voorbeeld van de nieuwe editor · Voorbeeldinhoud. Opslaan maakt alleen een concept in deze browser; publiceren op de website is nog niet aangesloten.",
   },
-  desktopTitle: {
-    ru: "Редактор для компьютера",
-    uk: "Редактор для комп’ютера",
-    en: "Desktop editor",
-    nl: "Editor voor desktop",
-  },
-  desktopHint: {
-    ru: "Новый дизайн пока доступен на экранах от 1250 px. Остальные разделы CMS работают в прежнем виде.",
-    uk: "Новий дизайн поки доступний на екранах від 1250 px. Решта розділів CMS працюють у попередньому вигляді.",
-    en: "The new design currently requires a screen at least 1250 px wide. The other CMS sections remain available.",
-    nl: "Het nieuwe ontwerp vereist momenteel een scherm van minstens 1250 px breed. De andere CMS-onderdelen blijven beschikbaar.",
-  },
-  openCases: {
-    ru: "Открыть кейсы учениц",
-    uk: "Відкрити кейси учениць",
-    en: "Open student cases",
-    nl: "Studentencases openen",
-  },
   content: { ru: "Контент", uk: "Контент", en: "Content", nl: "Inhoud" },
   contentTitle: {
     ru: "Контент сайта",
@@ -48,6 +30,12 @@ export const shellMessages = {
     ru: "Программа обучения",
     uk: "Програма навчання",
     en: "Training courses",
+    nl: "Opleidingen",
+  },
+  coursesShort: {
+    ru: "Программа",
+    uk: "Програма",
+    en: "Courses",
     nl: "Opleidingen",
   },
   services: { ru: "Услуги", uk: "Послуги", en: "Services", nl: "Diensten" },

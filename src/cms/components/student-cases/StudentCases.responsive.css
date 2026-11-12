@@ -1,0 +1,42 @@
+@media (max-width: 1249px) {
+  .collection-edit--student-cases #field-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+  }
+  .collection-edit--student-cases #field-status label {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    min-height: 44px;
+    border: 1px solid #e5d6c8;
+    border-radius: 6px;
+    background: #fcfaf7;
+  }
+  .collection-edit--student-cases #field-status li {
+    margin: 0;
+  }
+  .collection-edit--student-cases #field-status .radio-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 13px;
+  }
+  .collection-edit--student-cases #field-status .radio-input__label {
+    padding: 0;
+  }
+  .collection-edit--student-cases #field-status label:has(input:checked) {
+    background: #f0e1d5;
+    border-color: #a97963;
+  }
+  .collection-edit--student-cases #field-gallery,
+  .collection-edit--student-cases #field-contacts {
+    border-top: 1px solid #e7dcd2;
+    padding-top: 20px;
+  }
+  .collection-edit--student-cases .array-field .array-field {
+    padding-top: 0;
+  }
+}

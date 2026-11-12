@@ -21,6 +21,14 @@
   cursor: wait;
 }
 
+@media (max-width: 1249px) {
+  .layout {
+    padding-top: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
 @media (min-width: 1250px) and (max-width: 1399px) {
   .layout {
     grid-template-columns: minmax(0, 1fr) 338px;

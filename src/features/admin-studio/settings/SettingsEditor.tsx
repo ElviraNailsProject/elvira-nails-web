@@ -22,6 +22,17 @@ export function SettingsEditor() {
   const setField = (field: SettingsTextField, value: string) => {
     setSettings((current) => ({ ...current, [field]: value }));
   };
+  const actions = (
+    <>
+      <Button type="button" variant="secondary" onClick={reset}>
+        {t("cancel")}
+      </Button>
+      <Button type="submit" variant="primary">
+        <Icon name="check" />
+        {t("save")}
+      </Button>
+    </>
+  );
 
   return (
     <form
@@ -31,20 +42,14 @@ export function SettingsEditor() {
         save();
       }}
     >
-      <div className={shared.pageHeading}>
+      <div className={`${shared.pageHeading} ${styles.heading}`}>
         <div>
           <p className={shared.eyebrow}>{t("section")}</p>
           <h1>{t("title")}</h1>
           <p className={shared.subtitle}>{t("description")}</p>
         </div>
-        <div className={shared.actions}>
-          <Button type="button" variant="secondary" onClick={reset}>
-            {t("cancel")}
-          </Button>
-          <Button type="submit" variant="primary">
-            <Icon name="check" />
-            {t("save")}
-          </Button>
+        <div className={`${shared.actions} ${styles.headingActions}`}>
+          {actions}
         </div>
       </div>
 
@@ -65,12 +70,13 @@ export function SettingsEditor() {
           />
         </div>
 
-        <div className={styles.stack}>
+        <div className={`${styles.stack} ${styles.addressStack}`}>
           <AddressSettingsPanel settings={settings} setField={setField} />
 
           <SettingsEmailPreview settings={settings} />
         </div>
       </div>
+      <div className={styles.footerActions}>{actions}</div>
     </form>
   );
 }
