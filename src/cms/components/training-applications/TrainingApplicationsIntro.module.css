@@ -1,0 +1,40 @@
+.intro {
+  width: 100%;
+}
+.intro p {
+  margin: 0 0 18px;
+  color: #6b574c;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e7dcd2;
+  margin-top: 16px;
+}
+.tabs a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  color: #7a6458;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 7px 7px 0 0;
+}
+.tabs a[aria-current="page"] {
+  border-color: #d9c8bb;
+  border-bottom-color: #fcfaf7;
+  background: #fcfaf7;
+  color: #4a342b;
+  margin-bottom: -1px;
+}
+@media (max-width: 639px) {
+  .intro p {
+    font-size: 13px;
+  }
+  .tabs a {
+    flex: 1;
+  }
+}

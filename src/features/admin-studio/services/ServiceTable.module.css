@@ -148,3 +148,37 @@
   font-size: 11px;
   color: #7a6458;
 }
+
+@media (max-width: 1249px) {
+  .filters {
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .filters button {
+    flex-shrink: 0;
+    min-height: 44px;
+  }
+  .serviceTable th,
+  .serviceTable td {
+    padding: 12px 10px;
+  }
+  .serviceTable .duration {
+    padding-left: 10px;
+  }
+  .rowActions {
+    gap: 4px;
+  }
+}
+@media (max-width: 639px) {
+  .serviceTable table {
+    display: none;
+  }
+  .serviceTable {
+    border: 0;
+    background: transparent;
+  }
+  .tableFooter {
+    padding: 16px 0;
+    border: 0;
+  }
+}

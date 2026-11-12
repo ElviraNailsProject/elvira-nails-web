@@ -43,6 +43,18 @@ export default buildConfig({
       header: ["/src/cms/components/admin-header/AdminHeader#AdminHeader"],
       graphics: { Logo: "/src/cms/components/Brand#BrandLogo" },
       views: {
+        studioDashboard: {
+          Component: "/src/cms/views/StudioViews#DashboardView",
+          path: "/studio/dashboard",
+          exact: true,
+          meta: { title: "Главная" },
+        },
+        studioAppointments: {
+          Component: "/src/cms/views/StudioViews#AppointmentsView",
+          path: "/studio/appointments",
+          exact: true,
+          meta: { title: "Записи на приём" },
+        },
         studioPromotions: {
           Component: "/src/cms/views/StudioViews#PromotionsView",
           path: "/studio/promotions",

@@ -2,6 +2,7 @@
 
 import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { ConfirmDialog } from "../shared/ui/ConfirmDialog";
+import { ResponsiveDetails } from "../shared/ui/ResponsiveDetails";
 import { useLocalDraft } from "../shared/drafts/useLocalDraft";
 import { initialPromotions } from "./promotions.demo";
 import type { Promotion, PromotionFilter } from "./promotions.types";
@@ -23,11 +24,14 @@ export function PromotionsEditor() {
     promotions[0]?.id ?? null,
   );
   const [editor, setEditor] = useState<Promotion | null>(null);
+  const [compactOpen, setCompactOpen] = useState(false);
   const [deleting, setDeleting] = useState<Promotion | null>(null);
   const [deleteError, setDeleteError] = useState<
     keyof typeof promotionMessages | ""
   >("");
-  const [error, setError] = useState<keyof typeof promotionMessages | "">("");
+  const [error, setError] = useState<
+    keyof typeof promotionMessages | "draftFailed" | ""
+  >("");
   const [uploading, setUploading] = useState(false);
   const uploadRef = useRef<HTMLInputElement>(null);
   const today = new Intl.DateTimeFormat("sv-SE", {
@@ -50,6 +54,7 @@ export function PromotionsEditor() {
     setSelectedId(promotion.id);
     setEditor(null);
     setError("");
+    setCompactOpen(true);
   }
 
   function change<K extends keyof Promotion>(key: K, value: Promotion[K]) {
@@ -77,6 +82,15 @@ export function PromotionsEditor() {
     };
     setSelectedId(draft.id);
     setEditor(draft);
+    setError("");
+    setCompactOpen(true);
+  }
+
+  function closeDetails() {
+    if (uploading) return;
+    setCompactOpen(false);
+    setSelectedId(null);
+    setEditor(null);
     setError("");
   }
 
@@ -117,9 +131,12 @@ export function PromotionsEditor() {
               promotion.id === selected.id ? nextPromotion : promotion,
             ),
       )
-    )
+    ) {
+      setError("draftFailed");
       return;
+    }
     setEditor(null);
+    setCompactOpen(false);
     if (isNew) setFilter("all");
     setError("");
   }
@@ -133,6 +150,7 @@ export function PromotionsEditor() {
     if (selectedId === deleting.id) {
       setSelectedId(null);
       setEditor(null);
+      setCompactOpen(false);
     }
     setDeleting(null);
     setDeleteError("");
@@ -220,33 +238,31 @@ export function PromotionsEditor() {
       />
 
       {selected && (
-        <PromotionDetailsPanel
-          selected={selected}
-          isNew={isNew}
-          uploading={uploading}
-          hasChanges={!!editor}
-          error={error ? t(error) : ""}
-          uploadRef={uploadRef}
-          change={change}
-          submit={submit}
-          upload={upload}
-          onClose={() => {
-            if (!uploading) {
-              setSelectedId(null);
+        <ResponsiveDetails
+          open={compactOpen}
+          busy={uploading}
+          onClose={closeDetails}
+          label={isNew ? t("newTitle") : t("detailsTitle")}
+        >
+          <PromotionDetailsPanel
+            selected={selected}
+            isNew={isNew}
+            uploading={uploading}
+            hasChanges={!!editor}
+            error={error ? t(error) : ""}
+            uploadRef={uploadRef}
+            change={change}
+            submit={submit}
+            upload={upload}
+            onClose={closeDetails}
+            onCancelNew={closeDetails}
+            onDelete={() => setDeleting(selected)}
+            onRevert={() => {
               setEditor(null);
               setError("");
-            }
-          }}
-          onCancelNew={() => {
-            setEditor(null);
-            setSelectedId(null);
-          }}
-          onDelete={() => setDeleting(selected)}
-          onRevert={() => {
-            setEditor(null);
-            setError("");
-          }}
-        />
+            }}
+          />
+        </ResponsiveDetails>
       )}
 
       {deleting && (

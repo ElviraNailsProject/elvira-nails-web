@@ -1,0 +1,112 @@
+import type { StudioMessages } from "@/features/admin-studio/shared/i18n/studio-translations";
+
+export const trainingApplicationMessages = {
+  empty: {
+    ru: "Заявки не найдены.",
+    uk: "Заявок не знайдено.",
+    en: "No training enquiries found.",
+    nl: "Geen opleidingsaanvragen gevonden.",
+  },
+  application: {
+    ru: "Заявка на обучение",
+    uk: "Заявка на навчання",
+    en: "Training application",
+    nl: "Opleidingsaanvraag",
+  },
+  applications: {
+    ru: "Заявки на обучение",
+    uk: "Заявки на навчання",
+    en: "Training applications",
+    nl: "Opleidingsaanvragen",
+  },
+  description: {
+    ru: "Просматривайте заявки на обучение и связывайтесь с клиентами.",
+    uk: "Переглядайте заявки на навчання та зв’язуйтеся з клієнтами.",
+    en: "Review training applications and contact clients.",
+    nl: "Bekijk opleidingsaanvragen en neem contact op met klanten.",
+  },
+  procedures: {
+    ru: "Процедуры",
+    uk: "Процедури",
+    en: "Appointments",
+    nl: "Afspraken",
+  },
+  training: {
+    ru: "Обучение",
+    uk: "Навчання",
+    en: "Training",
+    nl: "Opleidingen",
+  },
+  client: { ru: "Клиент", uk: "Клієнт", en: "Client", nl: "Klant" },
+  name: {
+    ru: "Имя и фамилия",
+    uk: "Ім’я та прізвище",
+    en: "Full name",
+    nl: "Volledige naam",
+  },
+  date: {
+    ru: "Дата заявки",
+    uk: "Дата заявки",
+    en: "Application date",
+    nl: "Aanvraagdatum",
+  },
+  contacts: {
+    ru: "Контакты",
+    uk: "Контакти",
+    en: "Contact details",
+    nl: "Contactgegevens",
+  },
+  phone: { ru: "Телефон", uk: "Телефон", en: "Phone", nl: "Telefoon" },
+  email: { ru: "Email", uk: "Email", en: "Email", nl: "E-mail" },
+  status: { ru: "Статус", uk: "Статус", en: "Status", nl: "Status" },
+  comment: {
+    ru: "Комментарий",
+    uk: "Коментар",
+    en: "Comment",
+    nl: "Opmerking",
+  },
+  noComment: {
+    ru: "Комментарий не указан",
+    uk: "Коментар не вказано",
+    en: "No comment provided",
+    nl: "Geen opmerking opgegeven",
+  },
+  actions: { ru: "Действия", uk: "Дії", en: "Actions", nl: "Acties" },
+  edit: { ru: "Изменить", uk: "Змінити", en: "Edit", nl: "Bewerken" },
+  open: {
+    ru: "Открыть заявку: {name}",
+    uk: "Відкрити заявку: {name}",
+    en: "Open application: {name}",
+    nl: "Aanvraag openen: {name}",
+  },
+  deleteTitle: {
+    ru: "Удалить заявку?",
+    uk: "Видалити заявку?",
+    en: "Delete application?",
+    nl: "Aanvraag verwijderen?",
+  },
+  deleteHint: {
+    ru: "Заявка «{name}» будет удалена из CMS. Это действие нельзя отменить.",
+    uk: "Заявку «{name}» буде видалено з CMS. Цю дію неможливо скасувати.",
+    en: "The application from {name} will be deleted from the CMS. This cannot be undone.",
+    nl: "De aanvraag van {name} wordt verwijderd uit het CMS. Dit kan niet ongedaan worden gemaakt.",
+  },
+  deletePending: {
+    ru: "Удаление заявки…",
+    uk: "Видалення заявки…",
+    en: "Deleting application…",
+    nl: "Aanvraag verwijderen…",
+  },
+  deleteFailed: {
+    ru: "Не удалось удалить заявку. Обновите страницу и повторите попытку.",
+    uk: "Не вдалося видалити заявку. Оновіть сторінку та повторіть спробу.",
+    en: "Could not delete the application. Refresh the page and try again.",
+    nl: "De aanvraag kon niet worden verwijderd. Vernieuw de pagina en probeer het opnieuw.",
+  },
+  deleted: {
+    ru: "Заявка удалена",
+    uk: "Заявку видалено",
+    en: "Application deleted",
+    nl: "Aanvraag verwijderd",
+  },
+} satisfies StudioMessages;

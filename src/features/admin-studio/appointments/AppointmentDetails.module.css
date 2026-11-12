@@ -1,0 +1,134 @@
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  align-items: start;
+  gap: 16px;
+  min-height: calc(100dvh - 72px);
+  max-width: 960px;
+  padding: 24px 32px 0;
+  margin: auto;
+}
+.card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #e7dcd2;
+  border-radius: 12px;
+  background: #fcfaf7;
+}
+.card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8b7365;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.card p,
+.card dd,
+.card a {
+  overflow-wrap: anywhere;
+}
+.fields {
+  display: grid;
+  gap: 14px;
+}
+.contact {
+  display: grid;
+  gap: 20px;
+}
+.contact a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.meta {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+.included {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.included li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.included span {
+  color: #ac8571;
+}
+.meta dt {
+  margin-bottom: 4px;
+  color: #8b7365;
+  font-size: 12px;
+}
+.meta dd {
+  margin: 0;
+  white-space: pre-wrap;
+}
+.status {
+  display: inline-block;
+  border-radius: 20px;
+  padding: 3px 10px;
+  background: #f7edcf;
+  margin-top: 10px;
+  font-size: 12px;
+}
+.status[data-status="confirmed"] {
+  background: #e4ecd9;
+  color: #506541;
+}
+.status[data-status="rescheduled"] {
+  background: #e5e7fa;
+  color: #53699a;
+}
+.status[data-status="cancelled"] {
+  background: #f9e0da;
+  color: #b55344;
+}
+.notice,
+.error {
+  grid-column: 1 / -1;
+  font-size: 12px;
+}
+.notice {
+  color: #8b7365;
+}
+.error {
+  color: #a03c32;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  position: sticky;
+  bottom: 0;
+  padding: 16px 0 calc(16px + env(safe-area-inset-bottom));
+  background: #f6f0ea;
+  grid-column: 1 / -1;
+}
+.actions button {
+  flex: 1;
+  min-height: 48px;
+}
+@media (max-width: 639px) {
+  .form {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px 16px 0;
+    min-height: calc(100dvh - 60px);
+  }
+  .card {
+    padding: 20px 16px;
+  }
+  .card p,
+  .card dd,
+  .contact {
+    font-size: 16px;
+  }
+}

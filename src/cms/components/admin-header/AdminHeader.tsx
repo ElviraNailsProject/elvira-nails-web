@@ -3,9 +3,9 @@
 import { Link, useAuth, useConfig, useTranslation } from "@payloadcms/ui";
 import { usePathname } from "next/navigation";
 import { navigationLabels, studioLabels } from "./navigation-labels";
-import { BrandLogo } from "../Brand";
 import { AdminLanguageSelect } from "./AdminLanguageSelect";
 import { getStudioLocale } from "@/features/admin-studio/shared/i18n/studio-translations";
+import { useCompactLayout } from "@/features/admin-studio/shared/ui/useCompactLayout";
 
 export function EmptyNav() {
   return null;
@@ -17,6 +17,7 @@ export function AdminHeader() {
   const { config } = useConfig();
   const { i18n } = useTranslation();
   const pathname = usePathname();
+  const compact = useCompactLayout();
   const language = getStudioLocale(i18n.language);
   const text =
     navigationLabels[language as keyof typeof navigationLabels] ??
@@ -38,37 +39,28 @@ export function AdminHeader() {
     .map((part) => part[0])
     .join("")
     .toLocaleUpperCase(language);
-  const items = [
+  const studio =
+    studioLabels[language as keyof typeof studioLabels] ?? studioLabels.ru;
+  const items: {
+    href: string;
+    label: string;
+    shortLabel?: string;
+    icon: string;
+  }[] = [
     {
-      href: `${admin}/collections/training-applications`,
-      label: text.applications,
-      icon: "/admin/icons/training-calendar.svg",
+      href: compact
+        ? `${admin}/studio/appointments`
+        : `${admin}/collections/training-applications`,
+      label: studio.appointments,
+      shortLabel: studio.appointmentsShort,
+      icon: "/admin/icons/calendar.svg",
     },
     {
       href: `${admin}/collections/student-cases`,
       label: text.cases,
-      icon: "/admin/icons/student-cases-compact.svg",
+      shortLabel: studio.casesShort,
+      icon: "/admin/icons/student-cases.svg",
     },
-    {
-      href: `${admin}/collections/media`,
-      label: text.media,
-      icon: "/admin/icons/media-library.svg",
-    },
-    {
-      href: accountHref,
-      label: text.settings,
-      icon: "/admin/icons/account-settings.svg",
-    },
-  ];
-  const studio =
-    studioLabels[language as keyof typeof studioLabels] ?? studioLabels.ru;
-  const desktopItems = [
-    {
-      ...items[0],
-      label: studio.appointments,
-      icon: "/admin/icons/calendar.svg",
-    },
-    { ...items[1], icon: "/admin/icons/student-cases.svg" },
     {
       href: `${admin}/studio/promotions`,
       label: studio.promotions,
@@ -100,66 +92,61 @@ export function AdminHeader() {
       <Link
         aria-label="Elvira"
         className="elvira-cms-header__brand"
-        href={admin}
+        href={compact ? `${admin}/studio/dashboard` : admin}
       >
-        <span className="elvira-cms-brand-legacy">
-          <BrandLogo />
-        </span>
         <span className="elvira-studio-brand">
           <span className="elvira-studio-brand__name">Elvira</span>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/admin/icons/brand-sparkle.svg" alt="" aria-hidden="true" />
+          <picture className="elvira-studio-brand__sparkle">
+            <source
+              media="(max-width: 639px)"
+              srcSet="/admin/icons/brand-sparkle-small.svg"
+            />
+            <source
+              media="(max-width: 1249px)"
+              srcSet="/admin/icons/brand-sparkle-medium.svg"
+            />
+            <img src="/admin/icons/brand-sparkle.svg" alt="" />
+          </picture>
           <span className="elvira-studio-brand__descriptor">
             Nail studio &amp; academy
           </span>
         </span>
       </Link>
 
-      <nav
-        aria-label={text.navigation}
-        className="elvira-cms-header__nav elvira-cms-header__nav--legacy"
-      >
+      <nav aria-label={text.navigation} className="elvira-cms-header__nav">
         {items.map((item) => {
           const active =
-            pathname === item.href || pathname.startsWith(`${item.href}/`);
+            pathname === item.href ||
+            pathname.startsWith(`${item.href}/`) ||
+            (item.href === `${admin}/studio/appointments` &&
+              pathname.startsWith(
+                `${admin}/collections/training-applications`,
+              ));
+          const mobileIcon = item.icon
+            .replace("/admin/icons/", "/admin/icons/mobile-")
+            .replace("-active.svg", ".svg")
+            .replace(".svg", active ? "-active.svg" : ".svg");
           return (
             <Link
-              aria-current={active ? "page" : undefined}
-              className="elvira-cms-header__link"
-              href={item.href}
-              scroll={false}
               key={item.href}
+              href={item.href}
+              scroll={compact}
+              className="elvira-cms-header__link"
+              aria-current={active ? "page" : undefined}
             >
-              {/* The supplied Figma icons keep their original SVG dimensions. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" aria-hidden="true" src={item.icon} />
-              <span>{item.label}</span>
+              <picture>
+                <source media="(max-width: 639px)" srcSet={mobileIcon} />
+                <img src={item.icon} alt="" />
+              </picture>
+              <span className="elvira-cms-header__full-label">
+                {item.label}
+              </span>
+              <span className="elvira-cms-header__short-label">
+                {item.shortLabel ?? item.label}
+              </span>
             </Link>
           );
         })}
-      </nav>
-
-      <nav
-        aria-label={text.navigation}
-        className="elvira-cms-header__nav elvira-cms-header__nav--desktop"
-      >
-        {desktopItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            scroll={false}
-            className="elvira-cms-header__link"
-            aria-current={
-              pathname === item.href || pathname.startsWith(`${item.href}/`)
-                ? "page"
-                : undefined
-            }
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={item.icon} alt="" aria-hidden="true" />
-            <span>{item.label}</span>
-          </Link>
-        ))}
       </nav>
 
       <div className="elvira-cms-header__controls">
@@ -186,10 +173,6 @@ export function AdminHeader() {
             <p>{studio.noNotifications}</p>
           </div>
         </details>
-        <Link className="elvira-cms-header__website" href="/student-cases">
-          {text.website}
-          <span aria-hidden="true">↗</span>
-        </Link>
         <details
           className="elvira-cms-account"
           key={pathname}
@@ -200,7 +183,10 @@ export function AdminHeader() {
             }
           }}
         >
-          <summary className="elvira-cms-account__trigger">
+          <summary
+            className="elvira-cms-account__trigger"
+            aria-label={`${text.account}: ${name}`}
+          >
             <span aria-hidden="true" className="elvira-cms-account__avatar">
               {initials}
             </span>

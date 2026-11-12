@@ -6,6 +6,7 @@ import { categories } from "./services.demo";
 import { formatServiceDuration } from "./services.model";
 import type { Service } from "./services.types";
 import formStyles from "../shared/styles/editor-form.module.css";
+import { ServiceCards } from "./ServiceCards";
 import styles from "./ServiceTable.module.css";
 
 type ServiceTableProps = {
@@ -46,6 +47,11 @@ export function ServiceTable({
           </button>
         ))}
       </div>
+      <ServiceCards
+        services={filtered}
+        onSelect={onSelect}
+        onToggle={onToggle}
+      />
       <div className={styles.serviceTable}>
         <table>
           <colgroup>

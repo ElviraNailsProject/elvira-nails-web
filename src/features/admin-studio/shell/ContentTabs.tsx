@@ -29,7 +29,10 @@ export function ContentTabs({
             aria-current={selected === tab ? "page" : undefined}
           >
             <Icon name={selected === tab ? `${tab}-active` : tab} />
-            {t(tab)}
+            <span className={styles.fullLabel}>{t(tab)}</span>
+            <span className={styles.shortLabel}>
+              {t(tab === "courses" ? "coursesShort" : tab)}
+            </span>
             <span className={styles.count}>{counts[tab]}</span>
           </Link>
         );
