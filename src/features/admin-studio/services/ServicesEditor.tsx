@@ -9,6 +9,7 @@ import {
   type ChangeEvent,
   type FormEvent,
 } from "react";
+import { ResponsiveDetails } from "../shared/ui/ResponsiveDetails";
 import { ConfirmDialog } from "../shared/ui/ConfirmDialog";
 import { useLocalDraft } from "../shared/drafts/useLocalDraft";
 import { demoServices } from "./services.demo";
@@ -27,10 +28,13 @@ export function ServicesEditor({ addSignal = 0 }: { addSignal?: number }) {
   const [selectedId, setSelectedId] = useState<string | null>(
     services[0]?.id ?? null,
   );
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [draft, setDraft] = useState<Service | null>(null);
   const [filter, setFilter] = useState<string>("Все");
   const [deleteId, setDeleteId] = useState<string | null>(null);
-  const [message, setMessage] = useState<keyof typeof serviceMessages | "">("");
+  const [message, setMessage] = useState<
+    keyof typeof serviceMessages | "draftFailed" | ""
+  >("");
   const [lastAddSignal, setLastAddSignal] = useState(addSignal);
   const [uploading, setUploading] = useState(false);
   const photoRequest = useRef(0);
@@ -46,6 +50,7 @@ export function ServicesEditor({ addSignal = 0 }: { addSignal?: number }) {
 
   if (lastAddSignal !== addSignal) {
     setLastAddSignal(addSignal);
+    setDetailsOpen(true);
     const service = createServiceDraft();
     setSelectedId(service.id);
     setDraft(service);
@@ -64,6 +69,7 @@ export function ServicesEditor({ addSignal = 0 }: { addSignal?: number }) {
   }
 
   function selectService(service: Service) {
+    setDetailsOpen(true);
     cancelPhoto();
     setSelectedId(service.id);
     setDraft(null);
@@ -95,14 +101,27 @@ export function ServicesEditor({ addSignal = 0 }: { addSignal?: number }) {
       setServices(next);
       setDraft(null);
       setFilter("Все");
+      setMessage("");
+      setDetailsOpen(false);
+    } else {
+      setMessage("draftFailed");
     }
   }
 
   function cancelChanges() {
+    if (isNew) setDetailsOpen(false);
     cancelPhoto();
     setDraft(null);
     if (isNew) setSelectedId(services[0]?.id ?? null);
     setMessage("");
+  }
+
+  function closeDetails() {
+    cancelPhoto();
+    setSelectedId(null);
+    setDraft(null);
+    setMessage("");
+    setDetailsOpen(false);
   }
 
   function deleteService() {
@@ -111,6 +130,7 @@ export function ServicesEditor({ addSignal = 0 }: { addSignal?: number }) {
     if (save(next)) {
       setServices(next);
       if (selectedId === deleteId) {
+        setDetailsOpen(false);
         setSelectedId(next[0]?.id ?? null);
         setDraft(null);
       }
@@ -188,24 +208,25 @@ export function ServicesEditor({ addSignal = 0 }: { addSignal?: number }) {
         onDelete={setDeleteId}
       />
       {current ? (
-        <ServiceDetails
-          current={current}
-          isNew={isNew}
-          hasChanges={draft !== null}
-          uploading={uploading}
-          message={message ? t(message) : ""}
-          update={update}
-          onSave={saveService}
-          onPhotoChange={changePhoto}
-          onCancel={cancelChanges}
-          onDelete={setDeleteId}
-          onClose={() => {
-            cancelPhoto();
-            setSelectedId(null);
-            setDraft(null);
-            setMessage("");
-          }}
-        />
+        <ResponsiveDetails
+          open={detailsOpen}
+          onClose={closeDetails}
+          label={isNew ? t("newService") : t("details")}
+        >
+          <ServiceDetails
+            current={current}
+            isNew={isNew}
+            hasChanges={draft !== null}
+            uploading={uploading}
+            message={message ? t(message) : ""}
+            update={update}
+            onSave={saveService}
+            onPhotoChange={changePhoto}
+            onCancel={cancelChanges}
+            onDelete={setDeleteId}
+            onClose={closeDetails}
+          />
+        </ResponsiveDetails>
       ) : (
         <aside className={`${formStyles.panel} ${formStyles.emptyPanel}`}>
           <h2>{t("details")}</h2>

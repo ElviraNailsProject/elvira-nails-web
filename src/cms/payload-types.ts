@@ -164,6 +164,8 @@ export interface StudentCase {
   story: string;
   testimonial?: string | null;
   status: 'STUDYING' | 'WAITING' | 'COMPLETED';
+  trainingStartDate?: string | null;
+  trainingEndDate?: string | null;
   sortOrder: number;
   /**
    * Включайте только с разрешения ученицы. Иначе контакты доступны только администратору.
@@ -366,6 +368,8 @@ export interface StudentCasesSelect<T extends boolean = true> {
   story?: T;
   testimonial?: T;
   status?: T;
+  trainingStartDate?: T;
+  trainingEndDate?: T;
   sortOrder?: T;
   publishContacts?: T;
   contacts?:

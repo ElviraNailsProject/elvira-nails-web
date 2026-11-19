@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type RefObject } from "react";
+import { ResponsiveDetails } from "../shared/ui/ResponsiveDetails";
 import { ConfirmDialog } from "../shared/ui/ConfirmDialog";
 import { useLocalDraft } from "../shared/drafts/useLocalDraft";
 import type { GalleryPhoto } from "./gallery.types";
@@ -27,13 +28,14 @@ export function GalleryEditor({
     "gallery",
     initialPhotos,
   );
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState("example-1");
   const [error, setError] = useState<GalleryNotice | null>(null);
+  const [detailError, setDetailError] = useState<GalleryNotice | null>(null);
   const [uploading, setUploading] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [deleteError, setDeleteError] = useState(false);
   const [announcement, setAnnouncement] = useState<GalleryNotice | null>(null);
-  const replacementInput = useRef<HTMLInputElement>(null);
   const uploadInProgress = useRef(false);
   const selected = photos.find((photo) => photo.id === selectedId) ?? photos[0];
   const selectedIndex = selected
@@ -45,6 +47,7 @@ export function GalleryEditor({
     const requested = Array.from(files);
     if (!requested.length) return;
     setError(null);
+    setDetailError(null);
     if (!replaceId && photos.length + requested.length > MAX_PHOTOS) {
       setError({ key: "limit", params: { count: MAX_PHOTOS } });
       return;
@@ -85,10 +88,12 @@ export function GalleryEditor({
         }));
         setPhotos((current) => [...current, ...additions]);
         setSelectedId(additions[0].id);
+        setDetailsOpen(true);
         setAnnouncement({ key: "added", params: { count: additions.length } });
       }
     } catch (cause) {
-      setError(
+      const report = replaceId ? setDetailError : setError;
+      report(
         cause instanceof GalleryImageError
           ? { key: cause.code, params: cause.params }
           : { key: "uploadFailed" },
@@ -139,25 +144,43 @@ export function GalleryEditor({
           announcement ? t(announcement.key, announcement.params) : ""
         }
         uploadInput={uploadInput}
-        replacementInput={replacementInput}
         upload={upload}
-        setSelectedId={setSelectedId}
-        reorder={reorder}
-      />
-      <GalleryPhotoDetails
-        selected={selected}
-        selectedIndex={selectedIndex}
-        photoCount={photos.length}
-        uploading={uploading}
-        replacementInput={replacementInput}
-        patchSelected={patchSelected}
-        reorder={reorder}
-        onDelete={(id) => {
-          setDeleteError(false);
-          setDeleteId(id);
+        setSelectedId={(id) => {
+          setDetailError(null);
+          setSelectedId(id);
+          setDetailsOpen(true);
         }}
-        save={() => save()}
+        reorder={reorder}
       />
+      <ResponsiveDetails
+        open={detailsOpen}
+        busy={uploading}
+        onClose={() => setDetailsOpen(false)}
+        label={t("details")}
+      >
+        <GalleryPhotoDetails
+          selected={selected}
+          selectedIndex={selectedIndex}
+          photoCount={photos.length}
+          uploading={uploading}
+          replacePhoto={upload}
+          error={detailError ? t(detailError.key, detailError.params) : ""}
+          patchSelected={patchSelected}
+          reorder={reorder}
+          onDelete={(id) => {
+            setDeleteError(false);
+            setDeleteId(id);
+          }}
+          save={() => {
+            if (save()) {
+              setDetailError(null);
+              setDetailsOpen(false);
+            } else {
+              setDetailError({ key: "draftFailed" });
+            }
+          }}
+        />
+      </ResponsiveDetails>
 
       {deleteId && (
         <ConfirmDialog
@@ -167,6 +190,7 @@ export function GalleryEditor({
             const next = photos.filter((photo) => photo.id !== deleteId);
             if (save(next)) {
               setDeleteId(null);
+              setDetailsOpen(false);
               setAnnouncement({ key: "deleted" });
             } else {
               setDeleteError(true);

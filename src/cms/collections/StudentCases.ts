@@ -1,4 +1,9 @@
 import type { CollectionConfig, TextFieldSingleValidation } from "payload";
+import { ValidationError } from "payload";
+import {
+  mergeTrainingPeriod,
+  validateTrainingPeriod,
+} from "../lib/training-period";
 
 import {
   adminOnly,
@@ -30,7 +35,12 @@ export const StudentCases: CollectionConfig = {
     useAsTitle: "studentName",
     group: "Обучение",
     defaultColumns: ["studentName", "status", "_status", "updatedAt"],
-    listSearchableFields: ["studentName", "city"],
+    listSearchableFields: ["studentName", "city", "contacts.value"],
+    components: {
+      beforeListTable: [
+        "/src/cms/components/student-cases/StudentCasesList#StudentCasesList",
+      ],
+    },
     description:
       "Заполните историю, выберите язык и добавьте работы ученицы. Черновики доступны только администратору.",
   },
@@ -44,6 +54,31 @@ export const StudentCases: CollectionConfig = {
   },
   versions: { drafts: true, maxPerDoc: 20 },
   hooks: {
+    beforeChange: [
+      ({ data, originalDoc, req }) => {
+        const period = mergeTrainingPeriod(data, originalDoc);
+        const error = validateTrainingPeriod(period.start, period.end);
+        if (error) {
+          const messages = {
+            ru: "Укажите корректные даты: окончание обучения не может быть раньше начала.",
+            uk: "Укажіть коректні дати: закінчення навчання не може бути раніше початку.",
+            en: "Enter valid dates: training cannot end before it starts.",
+            nl: "Vul geldige datums in: de opleiding kan niet eindigen voordat deze begint.",
+          };
+          throw new ValidationError({
+            errors: [
+              {
+                path: "trainingEndDate",
+                message:
+                  messages[req.i18n.language as keyof typeof messages] ??
+                  messages.ru,
+              },
+            ],
+          });
+        }
+        return data;
+      },
+    ],
     afterRead: [
       ({ doc, req }) => (isAdmin(req.user) ? doc : redactCaseForPublic(doc)),
     ],
@@ -97,7 +132,39 @@ export const StudentCases: CollectionConfig = {
       options: [...trainingStatuses],
       admin: {
         position: "sidebar",
-        components: { Cell: "/src/cms/components/StatusCell#StatusCell" },
+        components: {
+          Cell: "/src/cms/components/StatusCell#StatusCell",
+          Field:
+            "/src/cms/components/student-cases/CaseStatusField#CaseStatusField",
+        },
+      },
+    },
+    {
+      name: "trainingStartDate",
+      type: "date",
+      label: {
+        ru: "Начало обучения",
+        uk: "Початок навчання",
+        en: "Training starts",
+        nl: "Start opleiding",
+      },
+      admin: {
+        position: "sidebar",
+        date: { pickerAppearance: "dayOnly", displayFormat: "dd.MM.yyyy" },
+      },
+    },
+    {
+      name: "trainingEndDate",
+      type: "date",
+      label: {
+        ru: "Окончание обучения",
+        uk: "Закінчення навчання",
+        en: "Training ends",
+        nl: "Einde opleiding",
+      },
+      admin: {
+        position: "sidebar",
+        date: { pickerAppearance: "dayOnly", displayFormat: "dd.MM.yyyy" },
       },
     },
     {

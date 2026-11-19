@@ -1,0 +1,198 @@
+@media (max-width: 1249px) {
+  html.elvira-cms
+    :is(
+      .collection-list--student-cases,
+      .collection-list--training-applications,
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    ) {
+    font-family: "Elvira Noto Serif", Georgia, serif;
+    color: #4e3529;
+    background: #f6f0ea;
+    --gutter-h: 32px;
+  }
+  html.elvira-cms
+    :is(
+      .collection-list--student-cases,
+      .collection-list--training-applications
+    )
+    .collection-list__header
+    h1 {
+    font-family: inherit;
+    font-size: 32px;
+    letter-spacing: 0;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .document-fields {
+    display: flex;
+    flex-direction: column;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .document-fields__sidebar-wrap {
+    width: auto;
+    border: 0;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .document-fields__sidebar {
+    position: static;
+    width: auto;
+    padding: 20px var(--gutter-h);
+    background: transparent;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .document-fields__fields {
+    padding: 24px;
+    border: 1px solid #e7dcd2;
+    border-radius: 12px;
+    background: #fcfaf7;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .doc-controls {
+    position: static;
+    background: #f6f0ea;
+    padding-block: 16px;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .doc-controls__wrapper,
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .doc-controls__content,
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .doc-controls__controls-wrapper,
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .doc-controls__controls {
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    overflow: visible;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .doc-controls {
+    backdrop-filter: none;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .doc-controls__divider {
+    display: none;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .field-type
+    :is(input:not([type="checkbox"]):not([type="radio"]), textarea) {
+    min-width: 0;
+    max-width: 100%;
+    min-height: 44px;
+    border-radius: 6px;
+  }
+  html.elvira-cms
+    :is(
+      .collection-list--student-cases,
+      .collection-list--training-applications,
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .btn {
+    min-height: 44px;
+  }
+}
+@media (max-width: 639px) {
+  html.elvira-cms
+    :is(
+      .collection-list--student-cases,
+      .collection-list--training-applications,
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    ) {
+    --gutter-h: 16px;
+  }
+  html.elvira-cms
+    :is(
+      .collection-list--student-cases,
+      .collection-list--training-applications
+    )
+    .collection-list__header {
+    align-items: stretch;
+    gap: 14px;
+  }
+  html.elvira-cms
+    :is(
+      .collection-list--student-cases,
+      .collection-list--training-applications
+    )
+    .collection-list__header
+    h1 {
+    font-size: 28px;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .document-fields__fields {
+    padding: 16px;
+  }
+  html.elvira-cms
+    :is(
+      .collection-edit--student-cases,
+      .collection-edit--training-applications
+    )
+    .field-type
+    :is(input:not([type="checkbox"]):not([type="radio"]), textarea) {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1250px) {
+  html.elvira-cms
+    .collection-list--training-applications
+    .collection-list__sub-header {
+    display: none;
+  }
+}

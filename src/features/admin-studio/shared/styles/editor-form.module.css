@@ -161,3 +161,37 @@
   margin-top: 12px;
   color: #7a6458;
 }
+
+@media (max-width: 1249px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .emptyPanel {
+    display: none;
+  }
+  .iconButton {
+    width: 44px;
+    height: 44px;
+  }
+  .compactButton {
+    min-height: 44px !important;
+  }
+}
+@media (max-width: 639px) {
+  .panelHeader {
+    padding: 16px;
+    gap: 12px;
+  }
+  .panelBody {
+    padding: 16px;
+  }
+  .fieldPair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .formActions {
+    flex-wrap: wrap;
+  }
+  .formActions button {
+    min-height: 44px;
+  }
+}

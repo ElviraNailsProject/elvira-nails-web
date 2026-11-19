@@ -6,8 +6,10 @@ import { AdminWorkspace } from "@/features/admin-studio/shell/AdminWorkspace";
 import { ContentWorkspace } from "@/features/admin-studio/shell/ContentWorkspace";
 import { PromotionsEditor } from "@/features/admin-studio/promotions/PromotionsEditor";
 import { SettingsEditor } from "@/features/admin-studio/settings/SettingsEditor";
+import { AppointmentsWorkspace } from "@/features/admin-studio/appointments/AppointmentsWorkspace";
 
-type AdminSection = "promotions" | "content" | "settings";
+type AdminSection =
+  "promotions" | "content" | "settings" | "dashboard" | "appointments";
 
 function StudioView({
   initPageResult,
@@ -28,6 +30,8 @@ function StudioView({
           <PromotionsEditor />
         ) : section === "settings" ? (
           <SettingsEditor />
+        ) : section === "dashboard" || section === "appointments" ? (
+          <AppointmentsWorkspace dashboard={section === "dashboard"} />
         ) : (
           <ContentWorkspace />
         )}
@@ -44,4 +48,10 @@ export const ContentView = (props: AdminViewServerProps) => (
 );
 export const SettingsView = (props: AdminViewServerProps) => (
   <StudioView {...props} section="settings" />
+);
+export const DashboardView = (props: AdminViewServerProps) => (
+  <StudioView {...props} section="dashboard" />
+);
+export const AppointmentsView = (props: AdminViewServerProps) => (
+  <StudioView {...props} section="appointments" />
 );

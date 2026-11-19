@@ -13,7 +13,6 @@ type GalleryGridProps = {
   uploading: boolean;
   announcement: string;
   uploadInput: RefObject<HTMLInputElement | null>;
-  replacementInput: RefObject<HTMLInputElement | null>;
   upload: (files: FileList | File[], replaceId?: string) => Promise<void>;
   setSelectedId: (id: string) => void;
   reorder: (id: string, targetIndex: number) => void;
@@ -26,7 +25,6 @@ export function GalleryGrid({
   uploading,
   announcement,
   uploadInput,
-  replacementInput,
   upload,
   setSelectedId,
   reorder,
@@ -54,19 +52,6 @@ export function GalleryGrid({
         aria-label={t("choosePhotos")}
         onChange={(event) => {
           if (event.target.files) void upload(event.target.files);
-          event.target.value = "";
-        }}
-      />
-      <input
-        className={styles.fileInput}
-        ref={replacementInput}
-        type="file"
-        accept="image/jpeg,image/png,image/webp,image/avif"
-        disabled={uploading}
-        aria-label={t("replacePhoto")}
-        onChange={(event) => {
-          if (event.target.files && selectedId)
-            void upload(event.target.files, selectedId);
           event.target.value = "";
         }}
       />

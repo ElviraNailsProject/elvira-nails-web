@@ -118,17 +118,35 @@
   box-shadow: 0 8px 28px rgba(78, 53, 41, 0.1254901961);
 }
 
-.smallScreen {
-  display: none;
-  padding: 40px 24px;
-}
-
 @media (max-width: 1249px) {
   .workspace {
-    display: none;
+    padding: 28px 32px 40px;
+    min-height: calc(100dvh - 121px);
   }
-  .smallScreen {
-    display: block;
+  .workspace :where(h1) {
+    font-size: 32px;
+  }
+  .workspace
+    :where(input:not([type="checkbox"]):not([type="file"]), select, textarea) {
+    min-height: 44px;
+  }
+}
+@media (max-width: 639px) {
+  .workspace {
+    padding: 20px 16px calc(90px + env(safe-area-inset-bottom));
+    min-height: calc(100dvh - 65px);
+  }
+  .workspace :where(h1) {
+    font-size: 28px;
+  }
+  .workspace
+    :where(input:not([type="checkbox"]):not([type="file"]), select, textarea) {
+    font-size: 16px;
+  }
+  .toast {
+    left: 16px;
+    right: 16px;
+    bottom: calc(80px + env(safe-area-inset-bottom));
   }
 }
 @media (prefers-reduced-motion: reduce) {

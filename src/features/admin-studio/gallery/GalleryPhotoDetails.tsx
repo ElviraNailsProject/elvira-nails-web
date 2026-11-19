@@ -1,8 +1,9 @@
 import Image from "next/image";
-import type { RefObject } from "react";
+import { useRef } from "react";
 import { Button, Field, Toggle } from "../shared/ui/controls";
 import type { GalleryPhoto } from "./gallery.types";
 import styles from "./GalleryPhotoDetails.module.css";
+import formStyles from "../shared/styles/editor-form.module.css";
 import { useStudioTranslation } from "../shared/i18n/useStudioTranslation";
 import { galleryMessages, galleryCategoryKeys } from "./gallery.messages";
 
@@ -19,7 +20,8 @@ type GalleryPhotoDetailsProps = {
   selectedIndex: number;
   photoCount: number;
   uploading: boolean;
-  replacementInput: RefObject<HTMLInputElement | null>;
+  replacePhoto: (files: FileList, id: string) => Promise<void>;
+  error: string;
   patchSelected: (patch: Partial<GalleryPhoto>) => void;
   reorder: (id: string, targetIndex: number) => void;
   onDelete: (id: string) => void;
@@ -31,13 +33,15 @@ export function GalleryPhotoDetails({
   selectedIndex,
   photoCount,
   uploading,
-  replacementInput,
+  replacePhoto,
+  error,
   patchSelected,
   reorder,
   onDelete,
   save,
 }: GalleryPhotoDetailsProps) {
   const { t } = useStudioTranslation(galleryMessages);
+  const replacementInput = useRef<HTMLInputElement>(null);
   return (
     <aside className={styles.details} aria-label={t("details")}>
       <h2>{t("details")}</h2>
@@ -76,6 +80,19 @@ export function GalleryPhotoDetails({
               >
                 {t("replace")}
               </Button>
+              <input
+                hidden
+                ref={replacementInput}
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/avif"
+                disabled={uploading}
+                aria-label={t("replacePhoto")}
+                onChange={(event) => {
+                  if (event.target.files)
+                    void replacePhoto(event.target.files, selected.id);
+                  event.target.value = "";
+                }}
+              />
             </div>
           </div>
 
@@ -133,6 +150,11 @@ export function GalleryPhotoDetails({
               placeholder={t("describe")}
             />
           </Field>
+          {error && (
+            <p className={formStyles.feedback} role="alert">
+              {error}
+            </p>
+          )}
           <div className={styles.actions}>
             <Button
               variant="secondary"

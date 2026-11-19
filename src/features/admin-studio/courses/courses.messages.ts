@@ -17,6 +17,12 @@ export const courseMessages = {
     en: "Enter a name for the course, each module and each topic. Module duration must be greater than zero.",
     nl: "Vul een naam in voor de cursus, elke module en elk onderwerp. De moduleduur moet groter zijn dan nul.",
   },
+  invalidCourseSettings: {
+    ru: "Проверьте цену и продолжительность курса.",
+    uk: "Перевірте ціну та тривалість курсу.",
+    en: "Check the course price and duration.",
+    nl: "Controleer de prijs en de duur van de cursus.",
+  },
   deleteFailed: {
     ru: "Не удалось сохранить удаление. Проверьте хранилище браузера и повторите попытку.",
     uk: "Не вдалося зберегти видалення. Перевірте сховище браузера та спробуйте ще раз.",

@@ -3,3 +3,6 @@
 @import "./theme.css";
 @import "./payload-overrides.css";
 @import "../components/admin-header/AdminHeader.css";
+@import "../components/admin-header/AdminHeader.responsive.css";
+@import "../components/collections/CollectionWorkspace.responsive.css";
+@import "../components/student-cases/StudentCases.responsive.css";
