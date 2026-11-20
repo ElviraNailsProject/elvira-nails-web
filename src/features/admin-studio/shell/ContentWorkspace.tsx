@@ -10,6 +10,7 @@ import s from "../shared/styles/layout.module.css";
 import { useStudioTranslation } from "../shared/i18n/useStudioTranslation";
 import { shellMessages } from "./shell.messages";
 import { ContentTabs } from "./ContentTabs";
+import styles from "./ContentWorkspace.module.css";
 
 export function ContentWorkspace() {
   const { t } = useStudioTranslation(shellMessages);
@@ -21,37 +22,40 @@ export function ContentWorkspace() {
   const courseCount = useDraftCount("courses", 3);
   const serviceCount = useDraftCount("services", 6);
   const galleryCount = useDraftCount("gallery", 11);
+  const addLabel = {
+    courses: t("addCourse"),
+    services: t("addService"),
+    gallery: t("uploadPhoto"),
+  }[selected];
+
+  function handleAdd() {
+    if (selected === "gallery") galleryUpload.current?.click();
+    else setAddSignal((value) => value + 1);
+  }
+
   return (
     <>
-      <div className={s.pageHeading}>
-        <div>
-          <p className={s.eyebrow}>{t("content")}</p>
-          <h1>{t("contentTitle")}</h1>
-          <p className={s.subtitle}>{t("contentHint")}</p>
+      <div className={styles.toolbar}>
+        <div className={`${s.pageHeading} ${styles.heading}`}>
+          <div>
+            <p className={s.eyebrow}>{t("content")}</p>
+            <h1>{t("contentTitle")}</h1>
+            <p className={s.subtitle}>{t("contentHint")}</p>
+          </div>
         </div>
-        <Button
-          variant="primary"
-          onClick={() => {
-            if (selected === "gallery") galleryUpload.current?.click();
-            else setAddSignal((value) => value + 1);
-          }}
-        >
+        <Button className={styles.add} variant="primary" onClick={handleAdd}>
           <Icon name="add-white" />
-          {selected === "courses"
-            ? t("addCourse")
-            : selected === "services"
-              ? t("addService")
-              : t("uploadPhoto")}
+          {addLabel}
         </Button>
+        <ContentTabs
+          selected={selected}
+          counts={{
+            courses: courseCount,
+            services: serviceCount,
+            gallery: galleryCount,
+          }}
+        />
       </div>
-      <ContentTabs
-        selected={selected}
-        counts={{
-          courses: courseCount,
-          services: serviceCount,
-          gallery: galleryCount,
-        }}
-      />
       {selected === "courses" ? (
         <CoursesEditor key="courses" addSignal={addSignal} />
       ) : selected === "services" ? (

@@ -166,3 +166,87 @@
   gap: 12px;
   margin-block: 12px;
 }
+
+.detailsButton,
+.saveProgram {
+  display: none;
+}
+@media (max-width: 1249px) {
+  .saveProgram {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .saveProgram button {
+    min-height: 44px;
+  }
+  .detailsButton {
+    display: inline-flex;
+    min-height: 44px;
+    flex-shrink: 0;
+  }
+  .programHeader {
+    flex-wrap: wrap;
+  }
+  .programHeader h2 {
+    flex: 1;
+  }
+  .moduleContent {
+    padding-right: 120px;
+  }
+}
+@media (max-width: 639px) {
+  .program {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+  .programHeader {
+    gap: 8px;
+    align-items: start;
+  }
+  .programHeader h2 {
+    flex-basis: 100%;
+    font-size: 18px;
+  }
+  .programHeader small {
+    flex: 1;
+  }
+  .programHeader .detailsButton {
+    min-height: 44px;
+  }
+  .module {
+    padding: 16px 14px 68px 42px;
+    gap: 10px;
+    background: #fcfaf7;
+  }
+  .moduleContent {
+    padding: 0;
+  }
+  .moduleContent h3 {
+    font-size: 15px;
+  }
+  .topics {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .moduleActions {
+    top: auto;
+    bottom: 12px;
+    right: 14px;
+    align-items: center;
+  }
+  .dragHandle {
+    top: 16px;
+    left: 0;
+    width: 40px;
+    height: 44px;
+  }
+  .moduleEditHeading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .editorTools {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

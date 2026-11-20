@@ -161,7 +161,7 @@
 
 .dateFields {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 12px;
 }
 
@@ -288,5 +288,90 @@
 @media (min-width: 1250px) and (max-width: 1399px) {
   .technicalGrid {
     gap: 4px 16px;
+  }
+}
+
+@media (max-width: 1249px) {
+  .details > aside {
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+  .details > aside > div:first-child {
+    display: none;
+  }
+  .details > aside > div:last-child {
+    padding: 24px 32px;
+  }
+  .editorFields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+  .section,
+  .technical {
+    padding: 18px !important;
+    background: #fcfaf7;
+    border: 1px solid #e7dcd2;
+    border-radius: 12px;
+  }
+  .section:first-child {
+    grid-row: span 2;
+  }
+  .section h2,
+  .technical h2 {
+    font-size: 16px;
+  }
+  .indented {
+    margin: 0;
+  }
+  .form input:not([type="file"]) {
+    min-height: 44px;
+    height: auto;
+  }
+  .technicalGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+  .technicalGrid > label:last-child {
+    width: 100%;
+  }
+  .formActions button {
+    min-height: 48px;
+  }
+  .fileRow {
+    flex-wrap: wrap;
+  }
+  .formActions {
+    margin-top: 20px;
+  }
+  .linkLabel {
+    text-indent: 0;
+  }
+}
+@media (max-width: 639px) {
+  .details > aside > div:last-child {
+    padding: 16px 16px calc(24px + env(safe-area-inset-bottom));
+  }
+  .editorFields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .section:first-child {
+    grid-row: auto;
+  }
+  .form input:not([type="file"]) {
+    font-size: 16px;
+  }
+  .dateFields {
+    gap: 8px;
+  }
+  .dateFields input {
+    padding-inline: 8px;
+    font-size: 14px !important;
+  }
+  .banner {
+    height: 150px;
   }
 }

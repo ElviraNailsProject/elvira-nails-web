@@ -48,6 +48,8 @@ export const navigationLabels = {
 export const studioLabels = {
   ru: {
     appointments: "Записи на приём",
+    appointmentsShort: "Записи",
+    casesShort: "Кейсы",
     promotions: "Акции",
     content: "Контент",
     settings: "Настройки",
@@ -56,6 +58,8 @@ export const studioLabels = {
   },
   uk: {
     appointments: "Записи на прийом",
+    appointmentsShort: "Записи",
+    casesShort: "Кейси",
     promotions: "Акції",
     content: "Контент",
     settings: "Налаштування",
@@ -64,6 +68,8 @@ export const studioLabels = {
   },
   en: {
     appointments: "Appointments",
+    appointmentsShort: "Bookings",
+    casesShort: "Cases",
     promotions: "Promotions",
     content: "Content",
     settings: "Settings",
@@ -72,6 +78,8 @@ export const studioLabels = {
   },
   nl: {
     appointments: "Afspraken",
+    appointmentsShort: "Afspraken",
+    casesShort: "Cases",
     promotions: "Acties",
     content: "Inhoud",
     settings: "Instellingen",

@@ -133,3 +133,43 @@
   font-size: 13px;
   line-height: 20px;
 }
+
+@media (max-width: 1249px) {
+  .details {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+  .details > h2 {
+    display: none;
+  }
+  .detailsBody {
+    padding: 24px 32px;
+    max-width: 768px;
+    margin: auto;
+  }
+  .preview {
+    max-height: 320px;
+  }
+  .orderButtons button {
+    width: 44px;
+    height: 44px;
+  }
+  .fileDetails > button {
+    height: 44px;
+  }
+  .actions button {
+    min-height: 48px;
+  }
+}
+@media (max-width: 639px) {
+  .detailsBody {
+    padding: 16px 16px calc(24px + env(safe-area-inset-bottom));
+  }
+  .preview {
+    aspect-ratio: 16 / 10;
+  }
+  .orderRow {
+    flex-wrap: wrap;
+  }
+}

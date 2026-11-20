@@ -1,6 +1,13 @@
 import { getStudioLocale } from "@/features/admin-studio/shared/i18n/studio-translations";
 
 const titles = {
+  dashboard: { ru: "Главная", uk: "Головна", en: "Dashboard", nl: "Overzicht" },
+  appointments: {
+    ru: "Записи на приём",
+    uk: "Записи на прийом",
+    en: "Appointments",
+    nl: "Afspraken",
+  },
   content: {
     ru: "Контент сайта",
     uk: "Контент сайту",
@@ -22,7 +29,9 @@ export function studioPageTitle(segments: string[], language: string) {
   if (
     section !== "content" &&
     section !== "promotions" &&
-    section !== "settings"
+    section !== "settings" &&
+    section !== "dashboard" &&
+    section !== "appointments"
   )
     return undefined;
   return `${titles[section][getStudioLocale(language)]} — Elvira`;

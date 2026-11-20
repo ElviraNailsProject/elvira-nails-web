@@ -26,3 +26,62 @@
 .inactive {
   opacity: 0.7;
 }
+
+@media (max-width: 1249px) {
+  .socials {
+    padding: 6px 18px 18px;
+  }
+
+  .socialIcon {
+    display: none;
+  }
+
+  .socialRow {
+    grid-template-columns: 110px minmax(0, 1fr) 48px;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 0;
+    border-top: 1px solid #efe7e0;
+    font-size: 14px;
+  }
+
+  .socialRow:last-child {
+    padding-bottom: 0;
+  }
+
+  .socialRow.inactive {
+    opacity: 1;
+  }
+
+  .inactive input {
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 639px) {
+  .socials {
+    padding-inline: 16px;
+    padding-bottom: 16px;
+  }
+
+  .socialRow {
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 8px;
+    padding-block: 12px;
+  }
+
+  .socialRow label {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .socialRow > button {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .socialRow input {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}

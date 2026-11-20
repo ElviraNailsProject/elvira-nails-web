@@ -29,3 +29,17 @@
 .actions > button {
   flex: 1;
 }
+
+@media (max-width: 639px) {
+  .pageHeading {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .actions {
+    flex-wrap: wrap;
+  }
+  .actions > button {
+    min-height: 44px;
+  }
+}

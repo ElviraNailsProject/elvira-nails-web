@@ -8,6 +8,10 @@ import styles from "./CourseProgram.module.css";
 
 type CourseProgramProps = {
   current: Course;
+  onOpenDetails: () => void;
+  hasChanges: boolean;
+  onSave: () => void;
+  message: string;
   editingModule: string | null;
   draggedModule: string | null;
   setEditingModule: (id: string | null) => void;
@@ -20,6 +24,10 @@ type CourseProgramProps = {
 
 export function CourseProgram({
   current,
+  onOpenDetails,
+  hasChanges,
+  onSave,
+  message,
   editingModule,
   draggedModule,
   setEditingModule,
@@ -42,6 +50,9 @@ export function CourseProgram({
             hours: totalHours(current),
           })}
         </small>
+        <Button className={styles.detailsButton} onClick={onOpenDetails}>
+          {t("details")}
+        </Button>
       </header>
       <div className={styles.modules}>
         {current.modules.map((module, index) => (
@@ -239,6 +250,18 @@ export function CourseProgram({
         <Icon name="add" />
         {t("addModule")}
       </button>
+      {hasChanges && (
+        <div className={styles.saveProgram}>
+          {message && (
+            <p role="alert" className={formStyles.feedback}>
+              {message}
+            </p>
+          )}
+          <Button variant="primary" onClick={onSave}>
+            {t("save")}
+          </Button>
+        </div>
+      )}
     </section>
   );
 }
