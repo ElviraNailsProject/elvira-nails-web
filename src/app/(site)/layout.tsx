@@ -1,6 +1,7 @@
 import Header from "../components/layout/Header";
 import type { Metadata } from "next";
 import { PublicAdminLink } from "@/cms/components/PublicAdminLink";
+import ScrollReveal from "../components/effects/ScrollReveal";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function SiteLayout({
     <html lang="en">
       <body>
         <Header adminLink={<PublicAdminLink />} />
+        <ScrollReveal />
         {children}
       </body>
     </html>
