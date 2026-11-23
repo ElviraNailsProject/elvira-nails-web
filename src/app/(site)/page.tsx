@@ -1,9 +1,15 @@
 import Hero from "../components/home/Hero";
+import Education from "../components/home/Education";
+import TheCoreProgram from "../components/home/TheCoreProgram";
+import WhyElvira from "../components/home/WhyElvira";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <Education />
+      <TheCoreProgram />
+      <WhyElvira />
 
       {/* Заглушка следующей секции — сюда ведёт "Explore the Course" */}
       <section
