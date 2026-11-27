@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
 
 import { siteTheCoreProgramConfig as coreProgram } from "@/config/site";
+import { BtnLink } from "../ui/Button";
 
 export default function TheCoreProgram() {
   return (
@@ -30,7 +30,7 @@ export default function TheCoreProgram() {
             {coreProgram.description}
           </p>
 
-          <ul className="mt-10 flex flex-col gap-4">
+          <ul className="mt-10 mb-12 flex flex-col gap-4">
             {coreProgram.checklist.items.map((item) => (
               <li key={item} className="flex gap-4 items-center">
                 <svg
@@ -48,29 +48,12 @@ export default function TheCoreProgram() {
             ))}
           </ul>
 
-          <Link
+          <BtnLink
             href={coreProgram.primaryCta.href}
-            className={[
-              "inline-flex items-center gap-3",
-              "mt-12 px-9 py-4",
-              "text-[12px] uppercase tracking-[0.25em]",
-              "rounded-[6px]",
-              "bg-[#a1794b]",
-              "transition-bg duration-200 ease-in-out",
-              "hover:bg-[#bb986c]",
-            ].join(" ")}
-          >
-            {coreProgram.primaryCta.label}
-
-            <svg
-              width="12"
-              height="12"
-              aria-hidden="true"
-              className="fill-current"
-            >
-              <use href={coreProgram.primaryCta.icon} />
-            </svg>
-          </Link>
+            label={coreProgram.primaryCta.label}
+            variant="primaryToLight"
+            showIcon
+          />
         </div>
       </div>
     </section>
