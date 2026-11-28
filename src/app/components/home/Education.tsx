@@ -24,7 +24,7 @@ export default function Education() {
             {education.secondParagraph}
           </p>
 
-          <div className="mt-10 flex items-center gap-6">
+          <div className="mt-10 flex flex-wrap items-center gap-6">
             <Link
               href={education.primaryCta.href}
               className={[
